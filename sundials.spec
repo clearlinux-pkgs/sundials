@@ -4,7 +4,7 @@
 #
 Name     : sundials
 Version  : 3.1.1
-Release  : 1
+Release  : 2
 URL      : https://github.com/LLNL/sundials/releases/download/v3.1.1/sundials-3.1.1.tar.gz
 Source0  : https://github.com/LLNL/sundials/releases/download/v3.1.1/sundials-3.1.1.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,9 @@ License  : BSD-3-Clause
 Requires: sundials-lib
 Requires: sundials-license
 BuildRequires : buildreq-cmake
+BuildRequires : openblas
+BuildRequires : openmpi-dev
+Patch1: libdir.patch
 
 %description
 List of parallel KINSOL FCMIX examples
@@ -47,29 +50,73 @@ license components for the sundials package.
 
 %prep
 %setup -q -n sundials-3.1.1
+%patch1 -p1
+pushd ..
+cp -a sundials-3.1.1 buildavx2
+popd
+pushd ..
+cp -a sundials-3.1.1 buildavx512
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532904342
+export SOURCE_DATE_EPOCH=1532904768
 mkdir clr-build
 pushd clr-build
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %cmake ..
 make  %{?_smp_mflags}
 popd
+mkdir clr-build-avx2
+pushd clr-build-avx2
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export CFLAGS="$CFLAGS -march=haswell -m64"
+export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
+%cmake ..
+make VERBOSE=1  %{?_smp_mflags}  || :
+popd
+mkdir clr-build-avx512
+pushd clr-build-avx512
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
+export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
+%cmake ..
+make VERBOSE=1  %{?_smp_mflags}  || :
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1532904342
+export SOURCE_DATE_EPOCH=1532904768
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/sundials
 cp LICENSE %{buildroot}/usr/share/doc/sundials/LICENSE
+cp src/arkode/LICENSE %{buildroot}/usr/share/doc/sundials/src_arkode_LICENSE
 cp src/cvodes/LICENSE %{buildroot}/usr/share/doc/sundials/src_cvodes_LICENSE
 cp src/sundials/LICENSE %{buildroot}/usr/share/doc/sundials/src_sundials_LICENSE
+pushd clr-build-avx512
+%make_install_avx512  || :
+popd
+pushd clr-build-avx2
+%make_install_avx2  || :
+popd
 pushd clr-build
 %make_install
 popd
+## install_append content
+mkdir -p  %{buildroot}/usr/lib64
+mv %{buildroot}/usr/lib/*  %{buildroot}/usr/lib64
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -360,63 +407,64 @@ popd
 /usr/include/sunmatrix/sunmatrix_band.h
 /usr/include/sunmatrix/sunmatrix_dense.h
 /usr/include/sunmatrix/sunmatrix_sparse.h
-/usr/lib/libsundials_arkode.so
-/usr/lib/libsundials_cvode.so
-/usr/lib/libsundials_cvodes.so
-/usr/lib/libsundials_ida.so
-/usr/lib/libsundials_idas.so
-/usr/lib/libsundials_kinsol.so
-/usr/lib/libsundials_nvecserial.so
-/usr/lib/libsundials_sunlinsolband.so
-/usr/lib/libsundials_sunlinsoldense.so
-/usr/lib/libsundials_sunlinsolpcg.so
-/usr/lib/libsundials_sunlinsolspbcgs.so
-/usr/lib/libsundials_sunlinsolspfgmr.so
-/usr/lib/libsundials_sunlinsolspgmr.so
-/usr/lib/libsundials_sunlinsolsptfqmr.so
-/usr/lib/libsundials_sunmatrixband.so
-/usr/lib/libsundials_sunmatrixdense.so
-/usr/lib/libsundials_sunmatrixsparse.so
+/usr/lib64/libsundials_arkode.so
+/usr/lib64/libsundials_cvode.so
+/usr/lib64/libsundials_cvodes.so
+/usr/lib64/libsundials_ida.so
+/usr/lib64/libsundials_idas.so
+/usr/lib64/libsundials_kinsol.so
+/usr/lib64/libsundials_nvecserial.so
+/usr/lib64/libsundials_sunlinsolband.so
+/usr/lib64/libsundials_sunlinsoldense.so
+/usr/lib64/libsundials_sunlinsolpcg.so
+/usr/lib64/libsundials_sunlinsolspbcgs.so
+/usr/lib64/libsundials_sunlinsolspfgmr.so
+/usr/lib64/libsundials_sunlinsolspgmr.so
+/usr/lib64/libsundials_sunlinsolsptfqmr.so
+/usr/lib64/libsundials_sunmatrixband.so
+/usr/lib64/libsundials_sunmatrixdense.so
+/usr/lib64/libsundials_sunmatrixsparse.so
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/libsundials_arkode.so.2
-/usr/lib/libsundials_arkode.so.2.1.1
-/usr/lib/libsundials_cvode.so.3
-/usr/lib/libsundials_cvode.so.3.1.1
-/usr/lib/libsundials_cvodes.so.3
-/usr/lib/libsundials_cvodes.so.3.1.1
-/usr/lib/libsundials_ida.so.3
-/usr/lib/libsundials_ida.so.3.1.1
-/usr/lib/libsundials_idas.so.2
-/usr/lib/libsundials_idas.so.2.1.0
-/usr/lib/libsundials_kinsol.so.3
-/usr/lib/libsundials_kinsol.so.3.1.1
-/usr/lib/libsundials_nvecserial.so.3
-/usr/lib/libsundials_nvecserial.so.3.1.1
-/usr/lib/libsundials_sunlinsolband.so.1
-/usr/lib/libsundials_sunlinsolband.so.1.1.1
-/usr/lib/libsundials_sunlinsoldense.so.1
-/usr/lib/libsundials_sunlinsoldense.so.1.1.1
-/usr/lib/libsundials_sunlinsolpcg.so.1
-/usr/lib/libsundials_sunlinsolpcg.so.1.1.1
-/usr/lib/libsundials_sunlinsolspbcgs.so.1
-/usr/lib/libsundials_sunlinsolspbcgs.so.1.1.1
-/usr/lib/libsundials_sunlinsolspfgmr.so.1
-/usr/lib/libsundials_sunlinsolspfgmr.so.1.1.1
-/usr/lib/libsundials_sunlinsolspgmr.so.1
-/usr/lib/libsundials_sunlinsolspgmr.so.1.1.1
-/usr/lib/libsundials_sunlinsolsptfqmr.so.1
-/usr/lib/libsundials_sunlinsolsptfqmr.so.1.1.1
-/usr/lib/libsundials_sunmatrixband.so.1
-/usr/lib/libsundials_sunmatrixband.so.1.1.1
-/usr/lib/libsundials_sunmatrixdense.so.1
-/usr/lib/libsundials_sunmatrixdense.so.1.1.1
-/usr/lib/libsundials_sunmatrixsparse.so.1
-/usr/lib/libsundials_sunmatrixsparse.so.1.1.1
+/usr/lib64/libsundials_arkode.so.2
+/usr/lib64/libsundials_arkode.so.2.1.1
+/usr/lib64/libsundials_cvode.so.3
+/usr/lib64/libsundials_cvode.so.3.1.1
+/usr/lib64/libsundials_cvodes.so.3
+/usr/lib64/libsundials_cvodes.so.3.1.1
+/usr/lib64/libsundials_ida.so.3
+/usr/lib64/libsundials_ida.so.3.1.1
+/usr/lib64/libsundials_idas.so.2
+/usr/lib64/libsundials_idas.so.2.1.0
+/usr/lib64/libsundials_kinsol.so.3
+/usr/lib64/libsundials_kinsol.so.3.1.1
+/usr/lib64/libsundials_nvecserial.so.3
+/usr/lib64/libsundials_nvecserial.so.3.1.1
+/usr/lib64/libsundials_sunlinsolband.so.1
+/usr/lib64/libsundials_sunlinsolband.so.1.1.1
+/usr/lib64/libsundials_sunlinsoldense.so.1
+/usr/lib64/libsundials_sunlinsoldense.so.1.1.1
+/usr/lib64/libsundials_sunlinsolpcg.so.1
+/usr/lib64/libsundials_sunlinsolpcg.so.1.1.1
+/usr/lib64/libsundials_sunlinsolspbcgs.so.1
+/usr/lib64/libsundials_sunlinsolspbcgs.so.1.1.1
+/usr/lib64/libsundials_sunlinsolspfgmr.so.1
+/usr/lib64/libsundials_sunlinsolspfgmr.so.1.1.1
+/usr/lib64/libsundials_sunlinsolspgmr.so.1
+/usr/lib64/libsundials_sunlinsolspgmr.so.1.1.1
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.1
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.1.1.1
+/usr/lib64/libsundials_sunmatrixband.so.1
+/usr/lib64/libsundials_sunmatrixband.so.1.1.1
+/usr/lib64/libsundials_sunmatrixdense.so.1
+/usr/lib64/libsundials_sunmatrixdense.so.1.1.1
+/usr/lib64/libsundials_sunmatrixsparse.so.1
+/usr/lib64/libsundials_sunmatrixsparse.so.1.1.1
 
 %files license
 %defattr(-,root,root,-)
 /usr/share/doc/sundials/LICENSE
+/usr/share/doc/sundials/src_arkode_LICENSE
 /usr/share/doc/sundials/src_cvodes_LICENSE
 /usr/share/doc/sundials/src_sundials_LICENSE

@@ -1,0 +1,11 @@
+--- sundials-3.1.1/CMakeLists.txt~	2018-05-07 20:24:49.000000000 +0000
++++ sundials-3.1.1/CMakeLists.txt	2018-07-29 22:50:15.430845359 +0000
+@@ -1260,7 +1260,7 @@
+     SET(prefix "${CMAKE_INSTALL_PREFIX}")
+     SET(exec_prefix "${CMAKE_INSTALL_PREFIX}")
+     SET(includedir "${prefix}/include")
+-    SET(libdir "${exec_prefix}/lib")
++    SET(libdir "${exec_prefix}/lib64")
+     SET(CPP "${CMAKE_C_COMPILER}")
+     SET(CPPFLAGS "${CMAKE_C_FLAGS_RELEASE}")
+     SET(CC "${CMAKE_C_COMPILER}")
