@@ -9,3 +9,962 @@
      SET(CPP "${CMAKE_C_COMPILER}")
      SET(CPPFLAGS "${CMAKE_C_FLAGS_RELEASE}")
      SET(CC "${CMAKE_C_COMPILER}")
+diff -purN sundials-3.1.1.org/src/arkode/CMakeLists.txt sundials-3.1.1/src/arkode/CMakeLists.txt
+--- sundials-3.1.1.org/src/arkode/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/arkode/CMakeLists.txt	2018-07-29 23:54:55.206791341 +0000
+@@ -97,7 +97,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_arkode CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the ARKODE library
+-  INSTALL(TARGETS sundials_arkode_static DESTINATION lib)
++  INSTALL(TARGETS sundials_arkode_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -121,7 +121,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${arkodelib_VERSION} SOVERSION ${arkodelib_SOVERSION})
+ 
+   # Install the ARKODE library
+-  INSTALL(TARGETS sundials_arkode_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_arkode_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/arkode/fcmix/CMakeLists.txt sundials-3.1.1/src/arkode/fcmix/CMakeLists.txt
+--- sundials-3.1.1.org/src/arkode/fcmix/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/arkode/fcmix/CMakeLists.txt	2018-07-29 23:54:55.207791341 +0000
+@@ -107,7 +107,7 @@ SET_TARGET_PROPERTIES(sundials_farkode_s
+   PROPERTIES OUTPUT_NAME sundials_farkode CLEAN_DIRECT_OUTPUT 1)
+ 
+ # Install the FARKODE library
+-INSTALL(TARGETS sundials_farkode_static DESTINATION lib)
++INSTALL(TARGETS sundials_farkode_static DESTINATION lib64)
+ 
+ #
+ MESSAGE(STATUS "Added ARKODE FCMIX module")
+diff -purN sundials-3.1.1.org/src/cvode/CMakeLists.txt sundials-3.1.1/src/cvode/CMakeLists.txt
+--- sundials-3.1.1.org/src/cvode/CMakeLists.txt	2018-05-07 20:25:08.000000000 +0000
++++ sundials-3.1.1/src/cvode/CMakeLists.txt	2018-07-29 23:54:55.196791342 +0000
+@@ -99,7 +99,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_cvode CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the CVODE library
+-  INSTALL(TARGETS sundials_cvode_static DESTINATION lib)
++  INSTALL(TARGETS sundials_cvode_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -123,7 +123,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${cvodelib_VERSION} SOVERSION ${cvodelib_SOVERSION})
+ 
+   # Install the CVODE library
+-  INSTALL(TARGETS sundials_cvode_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_cvode_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/cvode/fcmix/CMakeLists.txt sundials-3.1.1/src/cvode/fcmix/CMakeLists.txt
+--- sundials-3.1.1.org/src/cvode/fcmix/CMakeLists.txt	2018-05-07 20:25:08.000000000 +0000
++++ sundials-3.1.1/src/cvode/fcmix/CMakeLists.txt	2018-07-29 23:54:55.197791341 +0000
+@@ -83,7 +83,7 @@ SET_TARGET_PROPERTIES(sundials_fcvode_st
+   PROPERTIES OUTPUT_NAME sundials_fcvode CLEAN_DIRECT_OUTPUT 1)
+ 
+ # Install the FCVODE library
+-INSTALL(TARGETS sundials_fcvode_static DESTINATION lib)
++INSTALL(TARGETS sundials_fcvode_static DESTINATION lib64)
+ 
+ #
+ MESSAGE(STATUS "Added CVODE FCMIX module")
+diff -purN sundials-3.1.1.org/src/cvodes/CMakeLists.txt sundials-3.1.1/src/cvodes/CMakeLists.txt
+--- sundials-3.1.1.org/src/cvodes/CMakeLists.txt	2018-05-07 20:25:14.000000000 +0000
++++ sundials-3.1.1/src/cvodes/CMakeLists.txt	2018-07-29 23:54:55.208791341 +0000
+@@ -101,7 +101,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_cvodes CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the CVODES library
+-  INSTALL(TARGETS sundials_cvodes_static DESTINATION lib)
++  INSTALL(TARGETS sundials_cvodes_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -125,7 +125,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${cvodeslib_VERSION} SOVERSION ${cvodeslib_SOVERSION})
+ 
+   # Install the CVODES library
+-  INSTALL(TARGETS sundials_cvodes_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_cvodes_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/ida/CMakeLists.txt sundials-3.1.1/src/ida/CMakeLists.txt
+--- sundials-3.1.1.org/src/ida/CMakeLists.txt	2018-05-07 20:25:21.000000000 +0000
++++ sundials-3.1.1/src/ida/CMakeLists.txt	2018-07-29 23:54:55.215791341 +0000
+@@ -102,7 +102,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_ida CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the IDA library
+-  INSTALL(TARGETS sundials_ida_static DESTINATION lib)
++  INSTALL(TARGETS sundials_ida_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -126,7 +126,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${idalib_VERSION} SOVERSION ${idalib_SOVERSION})
+ 
+   # Install the IDA library
+-  INSTALL(TARGETS sundials_ida_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_ida_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/ida/fcmix/CMakeLists.txt sundials-3.1.1/src/ida/fcmix/CMakeLists.txt
+--- sundials-3.1.1.org/src/ida/fcmix/CMakeLists.txt	2018-05-07 20:25:21.000000000 +0000
++++ sundials-3.1.1/src/ida/fcmix/CMakeLists.txt	2018-07-29 23:54:55.216791341 +0000
+@@ -98,6 +98,6 @@ SET_TARGET_PROPERTIES(sundials_fida_stat
+   PROPERTIES OUTPUT_NAME sundials_fida CLEAN_DIRECT_OUTPUT 1)
+ 
+ # Install the FIDA library
+-INSTALL(TARGETS sundials_fida_static DESTINATION lib)
++INSTALL(TARGETS sundials_fida_static DESTINATION lib64)
+ #
+ MESSAGE(STATUS "Added IDA FCMIX module")
+diff -purN sundials-3.1.1.org/src/idas/CMakeLists.txt sundials-3.1.1/src/idas/CMakeLists.txt
+--- sundials-3.1.1.org/src/idas/CMakeLists.txt	2018-05-07 20:25:27.000000000 +0000
++++ sundials-3.1.1/src/idas/CMakeLists.txt	2018-07-29 23:54:55.194791342 +0000
+@@ -98,7 +98,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_idas CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the IDA library
+-  INSTALL(TARGETS sundials_idas_static DESTINATION lib)
++  INSTALL(TARGETS sundials_idas_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -122,7 +122,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${idaslib_VERSION} SOVERSION ${idaslib_SOVERSION})
+ 
+   # Install the IDAS library
+-  INSTALL(TARGETS sundials_idas_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_idas_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/kinsol/CMakeLists.txt sundials-3.1.1/src/kinsol/CMakeLists.txt
+--- sundials-3.1.1.org/src/kinsol/CMakeLists.txt	2018-05-07 20:25:34.000000000 +0000
++++ sundials-3.1.1/src/kinsol/CMakeLists.txt	2018-07-29 23:54:55.212791341 +0000
+@@ -95,7 +95,7 @@ IF(BUILD_STATIC_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_kinsol CLEAN_DIRECT_OUTPUT 1)
+ 
+   # Install the KINSOL library
+-  INSTALL(TARGETS sundials_kinsol_static DESTINATION lib)
++  INSTALL(TARGETS sundials_kinsol_static DESTINATION lib64)
+ 
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+@@ -119,7 +119,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES VERSION ${kinsollib_VERSION} SOVERSION ${kinsollib_SOVERSION})
+ 
+   # Install the KINSOL library
+-  INSTALL(TARGETS sundials_kinsol_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_kinsol_shared DESTINATION lib64)
+ 
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+diff -purN sundials-3.1.1.org/src/kinsol/fcmix/CMakeLists.txt sundials-3.1.1/src/kinsol/fcmix/CMakeLists.txt
+--- sundials-3.1.1.org/src/kinsol/fcmix/CMakeLists.txt	2018-05-07 20:25:34.000000000 +0000
++++ sundials-3.1.1/src/kinsol/fcmix/CMakeLists.txt	2018-07-29 23:54:55.213791341 +0000
+@@ -97,7 +97,7 @@ SET_TARGET_PROPERTIES(sundials_fkinsol_s
+   PROPERTIES OUTPUT_NAME sundials_fkinsol CLEAN_DIRECT_OUTPUT 1)
+ 
+ # Install the FKINSOL library
+-INSTALL(TARGETS sundials_fkinsol_static DESTINATION lib)
++INSTALL(TARGETS sundials_fkinsol_static DESTINATION lib64)
+ 
+ #
+ MESSAGE(STATUS "Added KINSOL FCMIX module")
+diff -purN sundials-3.1.1.org/src/nvec_cuda/CMakeLists.txt sundials-3.1.1/src/nvec_cuda/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_cuda/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_cuda/CMakeLists.txt	2018-07-29 23:54:55.209791341 +0000
+@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
+   SET_TARGET_PROPERTIES(sundials_nveccuda_static
+     PROPERTIES OUTPUT_NAME sundials_nveccuda CLEAN_DIRECT_OUTPUT 1
+   )
+-  INSTALL(TARGETS sundials_nveccuda_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nveccuda_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -65,7 +65,7 @@ IF(BUILD_SHARED_LIBS)
+   SET_TARGET_PROPERTIES(sundials_nveccuda_shared
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION}
+   )
+-  INSTALL(TARGETS sundials_nveccuda_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nveccuda_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECSERIAL header files
+diff -purN sundials-3.1.1.org/src/nvec_openmp/CMakeLists.txt sundials-3.1.1/src/nvec_openmp/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_openmp/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_openmp/CMakeLists.txt	2018-07-29 23:54:55.216791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecopenmp_static STATIC ${nvecopenmp_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecopenmp_static
+     PROPERTIES OUTPUT_NAME sundials_nvecopenmp CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecopenmp_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecopenmp_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecopenmp CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecopenmp_shared
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecopenmp_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecopenmp_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECOPENMP header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fnvecopenmp_static STATIC ${fnvecopenmp_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fnvecopenmp_static
+       PROPERTIES OUTPUT_NAME sundials_fnvecopenmp CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fnvecopenmp_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecopenmp_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -96,7 +96,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fnvecopenmp CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fnvecopenmp_shared 
+       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-    INSTALL(TARGETS sundials_fnvecopenmp_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecopenmp_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/nvec_par/CMakeLists.txt sundials-3.1.1/src/nvec_par/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_par/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_par/CMakeLists.txt	2018-07-29 23:54:55.195791342 +0000
+@@ -51,7 +51,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecparallel_static STATIC ${nvecparallel_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecparallel_static
+     PROPERTIES OUTPUT_NAME sundials_nvecparallel CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecparallel_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecparallel_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -70,7 +70,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecparallel CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecparallel_shared 
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecparallel_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecparallel_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECPARALLEL header files
+@@ -84,7 +84,7 @@ IF(FCMIX_ENABLE AND MPIF_FOUND)
+     ADD_LIBRARY(sundials_fnvecparallel_static STATIC ${fnvecparallel_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fnvecparallel_static
+       PROPERTIES OUTPUT_NAME sundials_fnvecparallel CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fnvecparallel_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecparallel_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -97,7 +97,7 @@ IF(FCMIX_ENABLE AND MPIF_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fnvecparallel CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fnvecparallel_shared
+       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-    INSTALL(TARGETS sundials_fnvecparallel_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecparallel_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND MPIF_FOUND)
+diff -purN sundials-3.1.1.org/src/nvec_parhyp/CMakeLists.txt sundials-3.1.1/src/nvec_parhyp/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_parhyp/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_parhyp/CMakeLists.txt	2018-07-29 23:54:55.217791341 +0000
+@@ -51,7 +51,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecparhyp_static STATIC ${nvecparhyp_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecparhyp_static
+     PROPERTIES OUTPUT_NAME sundials_nvecparhyp CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecparhyp_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecparhyp_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -73,7 +73,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecparhyp CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecparhyp_shared 
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecparhyp_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecparhyp_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECPARHYP header files
+diff -purN sundials-3.1.1.org/src/nvec_petsc/CMakeLists.txt sundials-3.1.1/src/nvec_petsc/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_petsc/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_petsc/CMakeLists.txt	2018-07-29 23:54:55.219791341 +0000
+@@ -52,7 +52,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecpetsc_static STATIC ${nvecpetsc_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecpetsc_static
+     PROPERTIES OUTPUT_NAME sundials_nvecpetsc CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecpetsc_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecpetsc_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -74,7 +74,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecpetsc CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecpetsc_shared 
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecpetsc_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecpetsc_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECPARHYP header files
+diff -purN sundials-3.1.1.org/src/nvec_pthreads/CMakeLists.txt sundials-3.1.1/src/nvec_pthreads/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_pthreads/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_pthreads/CMakeLists.txt	2018-07-29 23:54:55.205791341 +0000
+@@ -43,7 +43,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecpthreads_static STATIC ${nvecpthreads_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecpthreads_static
+     PROPERTIES OUTPUT_NAME sundials_nvecpthreads CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecpthreads_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecpthreads_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -64,7 +64,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecpthreads CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecpthreads_shared
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecpthreads_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecpthreads_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECPTHREADS header files
+@@ -78,7 +78,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fnvecpthreads_static STATIC ${fnvecpthreads_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fnvecpthreads_static
+       PROPERTIES OUTPUT_NAME sundials_fnvecpthreads CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fnvecpthreads_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecpthreads_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -91,7 +91,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fnvecpthreads CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fnvecpthreads_shared 
+       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-    INSTALL(TARGETS sundials_fnvecpthreads_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecpthreads_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+ 
+diff -purN sundials-3.1.1.org/src/nvec_raja/CMakeLists.txt sundials-3.1.1/src/nvec_raja/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_raja/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_raja/CMakeLists.txt	2018-07-29 23:54:55.211791341 +0000
+@@ -53,7 +53,7 @@ IF(BUILD_STATIC_LIBS)
+   SET_TARGET_PROPERTIES(sundials_nvecraja_static
+     PROPERTIES OUTPUT_NAME sundials_nvecraja CLEAN_DIRECT_OUTPUT 1
+   )
+-  INSTALL(TARGETS sundials_nvecraja_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecraja_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -72,7 +72,7 @@ IF(BUILD_SHARED_LIBS)
+ #  SET_TARGET_PROPERTIES(sundials_nvecraja_shared 
+ #    PROPERTIES INSTALL_RPATH_USE_LINK_PATH TRUE
+ #  )
+-  INSTALL(TARGETS sundials_nvecraja_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecraja_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECRAJA header files
+diff -purN sundials-3.1.1.org/src/nvec_ser/CMakeLists.txt sundials-3.1.1/src/nvec_ser/CMakeLists.txt
+--- sundials-3.1.1.org/src/nvec_ser/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/nvec_ser/CMakeLists.txt	2018-07-29 23:54:55.214791341 +0000
+@@ -43,7 +43,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_nvecserial_static STATIC ${nvecserial_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_nvecserial_static
+     PROPERTIES OUTPUT_NAME sundials_nvecserial CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_nvecserial_static DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecserial_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -62,7 +62,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_nvecserial CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_nvecserial_shared
+     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-  INSTALL(TARGETS sundials_nvecserial_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_nvecserial_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the NVECSERIAL header files
+@@ -76,7 +76,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fnvecserial_static STATIC ${fnvecserial_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fnvecserial_static
+       PROPERTIES OUTPUT_NAME sundials_fnvecserial CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fnvecserial_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecserial_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -89,7 +89,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fnvecserial CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fnvecserial_shared 
+       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
+-    INSTALL(TARGETS sundials_fnvecserial_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fnvecserial_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_band/CMakeLists.txt sundials-3.1.1/src/sunlinsol_band/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_band/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_band/CMakeLists.txt	2018-07-29 23:54:55.202791341 +0000
+@@ -48,7 +48,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolband_static STATIC ${sunlinsolband_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolband_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolband CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolband_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolband_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -66,7 +66,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolband CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolband_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolband_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolband_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLBAND header files
+@@ -80,7 +80,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolband_static STATIC ${fsunlinsolband_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolband_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolband CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolband_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolband_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -96,7 +96,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolband CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolband_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolband_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolband_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_dense/CMakeLists.txt sundials-3.1.1/src/sunlinsol_dense/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_dense/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_dense/CMakeLists.txt	2018-07-29 23:54:55.204791341 +0000
+@@ -48,7 +48,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsoldense_static STATIC ${sunlinsoldense_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsoldense_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsoldense CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsoldense_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsoldense_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -65,7 +65,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsoldense CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsoldense_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsoldense_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsoldense_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLDENSE header files
+@@ -79,7 +79,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsoldense_static STATIC ${fsunlinsoldense_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsoldense_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsoldense CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsoldense_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsoldense_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -95,7 +95,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsoldense CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsoldense_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsoldense_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsoldense_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_klu/CMakeLists.txt sundials-3.1.1/src/sunlinsol_klu/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_klu/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_klu/CMakeLists.txt	2018-07-29 23:54:55.210791341 +0000
+@@ -47,7 +47,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolklu_static STATIC ${sunlinsolklu_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolklu_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolklu CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolklu_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolklu_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -67,7 +67,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolklu CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolklu_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolklu_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolklu_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLKLU header files
+@@ -80,7 +80,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolklu_static STATIC ${fsunlinsolklu_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolklu_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolklu CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolklu_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolklu_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -96,7 +96,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolklu CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolklu_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolklu_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolklu_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_lapackband/CMakeLists.txt sundials-3.1.1/src/sunlinsol_lapackband/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_lapackband/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_lapackband/CMakeLists.txt	2018-07-29 23:54:55.197791341 +0000
+@@ -48,7 +48,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsollapackband_static STATIC ${sunlinsollapackband_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsollapackband_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsollapackband CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsollapackband_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsollapackband_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -68,7 +68,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsollapackband CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsollapackband_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsollapackband_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsollapackband_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLLAPACKBAND header files
+@@ -82,7 +82,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsollapackband_static STATIC ${fsunlinsollapackband_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsollapackband_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsollapackband CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsollapackband_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsollapackband_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsollapackband CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsollapackband_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsollapackband_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsollapackband_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_lapackdense/CMakeLists.txt sundials-3.1.1/src/sunlinsol_lapackdense/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_lapackdense/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_lapackdense/CMakeLists.txt	2018-07-29 23:54:55.202791341 +0000
+@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsollapackdense_static STATIC ${sunlinsollapackdense_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsollapackdense_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsollapackdense CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsollapackdense_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsollapackdense_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -74,7 +74,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsollapackdense CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsollapackdense_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsollapackdense_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsollapackdense_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLLAPACKDENSE header files
+@@ -88,7 +88,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsollapackdense_static STATIC ${fsunlinsollapackdense_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsollapackdense_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsollapackdense CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsollapackdense_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsollapackdense_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -104,7 +104,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsollapackdense CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsollapackdense_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsollapackdense_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsollapackdense_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_pcg/CMakeLists.txt sundials-3.1.1/src/sunlinsol_pcg/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_pcg/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_pcg/CMakeLists.txt	2018-07-29 23:54:55.199791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolpcg_static STATIC ${sunlinsolpcg_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolpcg_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolpcg CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolpcg_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolpcg_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolpcg CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolpcg_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolpcg_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolpcg_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLPCG header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolpcg_static STATIC ${fsunlinsolpcg_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolpcg_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolpcg CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolpcg_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolpcg_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolpcg CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolpcg_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolpcg_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolpcg_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_spbcgs/CMakeLists.txt sundials-3.1.1/src/sunlinsol_spbcgs/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_spbcgs/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_spbcgs/CMakeLists.txt	2018-07-29 23:54:55.203791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolspbcgs_static STATIC ${sunlinsolspbcgs_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspbcgs_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspbcgs CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolspbcgs_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspbcgs_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspbcgs CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspbcgs_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolspbcgs_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspbcgs_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLSPBCGS header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolspbcgs_static STATIC ${fsunlinsolspbcgs_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspbcgs_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspbcgs CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolspbcgs_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspbcgs_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspbcgs CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspbcgs_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolspbcgs_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspbcgs_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_spfgmr/CMakeLists.txt sundials-3.1.1/src/sunlinsol_spfgmr/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_spfgmr/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_spfgmr/CMakeLists.txt	2018-07-29 23:54:55.211791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolspfgmr_static STATIC ${sunlinsolspfgmr_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspfgmr_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspfgmr CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolspfgmr_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspfgmr_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspfgmr CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspfgmr_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolspfgmr_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspfgmr_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLSPFGMR header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolspfgmr_static STATIC ${fsunlinsolspfgmr_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspfgmr_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspfgmr CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolspfgmr_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspfgmr_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspfgmr CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspfgmr_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolspfgmr_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspfgmr_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_spgmr/CMakeLists.txt sundials-3.1.1/src/sunlinsol_spgmr/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_spgmr/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_spgmr/CMakeLists.txt	2018-07-29 23:54:55.220791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolspgmr_static STATIC ${sunlinsolspgmr_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspgmr_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspgmr CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolspgmr_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspgmr_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolspgmr CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolspgmr_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolspgmr_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolspgmr_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLSPGMR header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolspgmr_static STATIC ${fsunlinsolspgmr_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspgmr_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspgmr CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolspgmr_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspgmr_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolspgmr CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolspgmr_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolspgmr_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolspgmr_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunlinsol_sptfqmr/CMakeLists.txt sundials-3.1.1/src/sunlinsol_sptfqmr/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_sptfqmr/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_sptfqmr/CMakeLists.txt	2018-07-29 23:54:55.218791341 +0000
+@@ -50,7 +50,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolsptfqmr_static STATIC ${sunlinsolsptfqmr_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolsptfqmr_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolsptfqmr CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolsptfqmr_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolsptfqmr_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -69,7 +69,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolsptfqmr CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolsptfqmr_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolsptfqmr_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolsptfqmr_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLSPTFQMR header files
+@@ -83,7 +83,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolsptfqmr_static STATIC ${fsunlinsolsptfqmr_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolsptfqmr_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolsptfqmr CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolsptfqmr_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolsptfqmr_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -98,7 +98,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolsptfqmr CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolsptfqmr_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolsptfqmr_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolsptfqmr_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+ 
+diff -purN sundials-3.1.1.org/src/sunlinsol_superlumt/CMakeLists.txt sundials-3.1.1/src/sunlinsol_superlumt/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunlinsol_superlumt/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunlinsol_superlumt/CMakeLists.txt	2018-07-29 23:54:55.201791341 +0000
+@@ -47,7 +47,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunlinsolsuperlumt_static STATIC ${sunlinsolsuperlumt_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunlinsolsuperlumt_static
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolsuperlumt CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunlinsolsuperlumt_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolsuperlumt_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -78,7 +78,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunlinsolsuperlumt CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunlinsolsuperlumt_shared
+     PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunlinsolsuperlumt_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunlinsolsuperlumt_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNLINSOLSUPERLUMT header files
+@@ -91,7 +91,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunlinsolsuperlumt_static STATIC ${fsunlinsolsuperlumt_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolsuperlumt_static
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolsuperlumt CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunlinsolsuperlumt_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolsuperlumt_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -107,7 +107,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunlinsolsuperlumt CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunlinsolsuperlumt_shared 
+       PROPERTIES VERSION ${sunlinsollib_VERSION} SOVERSION ${sunlinsollib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunlinsolsuperlumt_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunlinsolsuperlumt_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunmat_band/CMakeLists.txt sundials-3.1.1/src/sunmat_band/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunmat_band/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunmat_band/CMakeLists.txt	2018-07-29 23:54:55.200791341 +0000
+@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunmatrixband_static STATIC ${sunmatrixband_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunmatrixband_static
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixband CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunmatrixband_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixband_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -68,7 +68,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixband CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunmatrixband_shared
+     PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunmatrixband_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixband_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNMATRIXBAND header files
+@@ -82,7 +82,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunmatrixband_static STATIC ${fsunmatrixband_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixband_static
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixband CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunmatrixband_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixband_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -95,7 +95,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixband CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixband_shared 
+       PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunmatrixband_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixband_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunmat_dense/CMakeLists.txt sundials-3.1.1/src/sunmat_dense/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunmat_dense/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunmat_dense/CMakeLists.txt	2018-07-29 23:54:55.220791341 +0000
+@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunmatrixdense_static STATIC ${sunmatrixdense_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunmatrixdense_static
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixdense CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunmatrixdense_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixdense_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -68,7 +68,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixdense CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunmatrixdense_shared
+     PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunmatrixdense_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixdense_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNMATRIXDENSE header files
+@@ -82,7 +82,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunmatrixdense_static STATIC ${fsunmatrixdense_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixdense_static
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixdense CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunmatrixdense_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixdense_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -95,7 +95,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixdense CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixdense_shared 
+       PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunmatrixdense_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixdense_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
+diff -purN sundials-3.1.1.org/src/sunmat_sparse/CMakeLists.txt sundials-3.1.1/src/sunmat_sparse/CMakeLists.txt
+--- sundials-3.1.1.org/src/sunmat_sparse/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
++++ sundials-3.1.1/src/sunmat_sparse/CMakeLists.txt	2018-07-29 23:54:55.198791341 +0000
+@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
+   ADD_LIBRARY(sundials_sunmatrixsparse_static STATIC ${sunmatrixsparse_SOURCES} ${shared_SOURCES})
+   SET_TARGET_PROPERTIES(sundials_sunmatrixsparse_static
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixsparse CLEAN_DIRECT_OUTPUT 1)
+-  INSTALL(TARGETS sundials_sunmatrixsparse_static DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixsparse_static DESTINATION lib64)
+ ENDIF(BUILD_STATIC_LIBS)
+ 
+ # Rules for building and installing the shared library:
+@@ -68,7 +68,7 @@ IF(BUILD_SHARED_LIBS)
+     PROPERTIES OUTPUT_NAME sundials_sunmatrixsparse CLEAN_DIRECT_OUTPUT 1)
+   SET_TARGET_PROPERTIES(sundials_sunmatrixsparse_shared
+     PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-  INSTALL(TARGETS sundials_sunmatrixsparse_shared DESTINATION lib)
++  INSTALL(TARGETS sundials_sunmatrixsparse_shared DESTINATION lib64)
+ ENDIF(BUILD_SHARED_LIBS)
+ 
+ # Install the SUNMATRIXSPARSE header files
+@@ -82,7 +82,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+     ADD_LIBRARY(sundials_fsunmatrixsparse_static STATIC ${fsunmatrixsparse_SOURCES})
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixsparse_static
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixsparse CLEAN_DIRECT_OUTPUT 1)
+-    INSTALL(TARGETS sundials_fsunmatrixsparse_static DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixsparse_static DESTINATION lib64)
+   ENDIF(BUILD_STATIC_LIBS)
+ 
+   IF(BUILD_SHARED_LIBS)
+@@ -95,7 +95,7 @@ IF(FCMIX_ENABLE AND F77_FOUND)
+       PROPERTIES OUTPUT_NAME sundials_fsunmatrixsparse CLEAN_DIRECT_OUTPUT 1)
+     SET_TARGET_PROPERTIES(sundials_fsunmatrixsparse_shared 
+       PROPERTIES VERSION ${sunmatrixlib_VERSION} SOVERSION ${sunmatrixlib_SOVERSION})
+-    INSTALL(TARGETS sundials_fsunmatrixsparse_shared DESTINATION lib)
++    INSTALL(TARGETS sundials_fsunmatrixsparse_shared DESTINATION lib64)
+   ENDIF(BUILD_SHARED_LIBS)
+ 
+ ENDIF(FCMIX_ENABLE AND F77_FOUND)
