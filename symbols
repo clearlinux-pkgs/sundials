@@ -424,6 +424,7 @@ libsundials_arkode.so.2:SUNSparseMatrix_NNZ
 libsundials_arkode.so.2:SUNSparseMatrix_NP
 libsundials_arkode.so.2:SUNSparseMatrix_Print
 libsundials_arkode.so.2:SUNSparseMatrix_Realloc
+libsundials_arkode.so.2:SUNSparseMatrix_Reallocate
 libsundials_arkode.so.2:SUNSparseMatrix_Rows
 libsundials_arkode.so.2:SUNSparseMatrix_SparseType
 libsundials_arkode.so.2:SetToZero
@@ -846,6 +847,7 @@ libsundials_cvode.so.3:SUNSparseMatrix_NNZ
 libsundials_cvode.so.3:SUNSparseMatrix_NP
 libsundials_cvode.so.3:SUNSparseMatrix_Print
 libsundials_cvode.so.3:SUNSparseMatrix_Realloc
+libsundials_cvode.so.3:SUNSparseMatrix_Reallocate
 libsundials_cvode.so.3:SUNSparseMatrix_Rows
 libsundials_cvode.so.3:SUNSparseMatrix_SparseType
 libsundials_cvode.so.3:SetToZero
@@ -938,6 +940,7 @@ libsundials_cvodes.so.3:CVSpilsSetEpsLin
 libsundials_cvodes.so.3:CVSpilsSetEpsLinB
 libsundials_cvodes.so.3:CVSpilsSetJacTimes
 libsundials_cvodes.so.3:CVSpilsSetJacTimesB
+libsundials_cvodes.so.3:CVSpilsSetJacTimesBS
 libsundials_cvodes.so.3:CVSpilsSetJacTimesSetupFnBS
 libsundials_cvodes.so.3:CVSpilsSetLinearSolver
 libsundials_cvodes.so.3:CVSpilsSetLinearSolverB
@@ -1355,6 +1358,7 @@ libsundials_cvodes.so.3:SUNSparseMatrix_NNZ
 libsundials_cvodes.so.3:SUNSparseMatrix_NP
 libsundials_cvodes.so.3:SUNSparseMatrix_Print
 libsundials_cvodes.so.3:SUNSparseMatrix_Realloc
+libsundials_cvodes.so.3:SUNSparseMatrix_Reallocate
 libsundials_cvodes.so.3:SUNSparseMatrix_Rows
 libsundials_cvodes.so.3:SUNSparseMatrix_SparseType
 libsundials_cvodes.so.3:SetToZero
@@ -1776,6 +1780,7 @@ libsundials_ida.so.3:SUNSparseMatrix_NNZ
 libsundials_ida.so.3:SUNSparseMatrix_NP
 libsundials_ida.so.3:SUNSparseMatrix_Print
 libsundials_ida.so.3:SUNSparseMatrix_Realloc
+libsundials_ida.so.3:SUNSparseMatrix_Reallocate
 libsundials_ida.so.3:SUNSparseMatrix_Rows
 libsundials_ida.so.3:SUNSparseMatrix_SparseType
 libsundials_ida.so.3:SetToZero
@@ -2295,6 +2300,7 @@ libsundials_idas.so.2:SUNSparseMatrix_NNZ
 libsundials_idas.so.2:SUNSparseMatrix_NP
 libsundials_idas.so.2:SUNSparseMatrix_Print
 libsundials_idas.so.2:SUNSparseMatrix_Realloc
+libsundials_idas.so.2:SUNSparseMatrix_Reallocate
 libsundials_idas.so.2:SUNSparseMatrix_Rows
 libsundials_idas.so.2:SUNSparseMatrix_SparseType
 libsundials_idas.so.2:SetToZero
@@ -2683,6 +2689,7 @@ libsundials_kinsol.so.3:SUNSparseMatrix_NNZ
 libsundials_kinsol.so.3:SUNSparseMatrix_NP
 libsundials_kinsol.so.3:SUNSparseMatrix_Print
 libsundials_kinsol.so.3:SUNSparseMatrix_Realloc
+libsundials_kinsol.so.3:SUNSparseMatrix_Reallocate
 libsundials_kinsol.so.3:SUNSparseMatrix_Rows
 libsundials_kinsol.so.3:SUNSparseMatrix_SparseType
 libsundials_kinsol.so.3:SetToZero
@@ -3361,5 +3368,6 @@ libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_NNZ
 libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_NP
 libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_Print
 libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_Realloc
+libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_Reallocate
 libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_Rows
 libsundials_sunmatrixsparse.so.1:SUNSparseMatrix_SparseType
