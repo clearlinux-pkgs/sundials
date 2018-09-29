@@ -1,14 +1,3 @@
---- sundials-3.1.1/CMakeLists.txt~	2018-05-07 20:24:49.000000000 +0000
-+++ sundials-3.1.1/CMakeLists.txt	2018-07-29 22:50:15.430845359 +0000
-@@ -1260,7 +1260,7 @@
-     SET(prefix "${CMAKE_INSTALL_PREFIX}")
-     SET(exec_prefix "${CMAKE_INSTALL_PREFIX}")
-     SET(includedir "${prefix}/include")
--    SET(libdir "${exec_prefix}/lib")
-+    SET(libdir "${exec_prefix}/lib64")
-     SET(CPP "${CMAKE_C_COMPILER}")
-     SET(CPPFLAGS "${CMAKE_C_FLAGS_RELEASE}")
-     SET(CC "${CMAKE_C_COMPILER}")
 diff -purN sundials-3.1.1.org/src/arkode/CMakeLists.txt sundials-3.1.1/src/arkode/CMakeLists.txt
 --- sundials-3.1.1.org/src/arkode/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
 +++ sundials-3.1.1/src/arkode/CMakeLists.txt	2018-07-29 23:54:55.206791341 +0000
@@ -182,27 +171,6 @@ diff -purN sundials-3.1.1.org/src/kinsol/fcmix/CMakeLists.txt sundials-3.1.1/src
  
  #
  MESSAGE(STATUS "Added KINSOL FCMIX module")
-diff -purN sundials-3.1.1.org/src/nvec_cuda/CMakeLists.txt sundials-3.1.1/src/nvec_cuda/CMakeLists.txt
---- sundials-3.1.1.org/src/nvec_cuda/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
-+++ sundials-3.1.1/src/nvec_cuda/CMakeLists.txt	2018-07-29 23:54:55.209791341 +0000
-@@ -49,7 +49,7 @@ IF(BUILD_STATIC_LIBS)
-   SET_TARGET_PROPERTIES(sundials_nveccuda_static
-     PROPERTIES OUTPUT_NAME sundials_nveccuda CLEAN_DIRECT_OUTPUT 1
-   )
--  INSTALL(TARGETS sundials_nveccuda_static DESTINATION lib)
-+  INSTALL(TARGETS sundials_nveccuda_static DESTINATION lib64)
- ENDIF(BUILD_STATIC_LIBS)
- 
- # Rules for building and installing the shared library:
-@@ -65,7 +65,7 @@ IF(BUILD_SHARED_LIBS)
-   SET_TARGET_PROPERTIES(sundials_nveccuda_shared
-     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION}
-   )
--  INSTALL(TARGETS sundials_nveccuda_shared DESTINATION lib)
-+  INSTALL(TARGETS sundials_nveccuda_shared DESTINATION lib64)
- ENDIF(BUILD_SHARED_LIBS)
- 
- # Install the NVECSERIAL header files
 diff -purN sundials-3.1.1.org/src/nvec_openmp/CMakeLists.txt sundials-3.1.1/src/nvec_openmp/CMakeLists.txt
 --- sundials-3.1.1.org/src/nvec_openmp/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
 +++ sundials-3.1.1/src/nvec_openmp/CMakeLists.txt	2018-07-29 23:54:55.216791341 +0000
@@ -362,27 +330,6 @@ diff -purN sundials-3.1.1.org/src/nvec_pthreads/CMakeLists.txt sundials-3.1.1/sr
    ENDIF(BUILD_SHARED_LIBS)
  ENDIF(FCMIX_ENABLE AND F77_FOUND)
  
-diff -purN sundials-3.1.1.org/src/nvec_raja/CMakeLists.txt sundials-3.1.1/src/nvec_raja/CMakeLists.txt
---- sundials-3.1.1.org/src/nvec_raja/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
-+++ sundials-3.1.1/src/nvec_raja/CMakeLists.txt	2018-07-29 23:54:55.211791341 +0000
-@@ -53,7 +53,7 @@ IF(BUILD_STATIC_LIBS)
-   SET_TARGET_PROPERTIES(sundials_nvecraja_static
-     PROPERTIES OUTPUT_NAME sundials_nvecraja CLEAN_DIRECT_OUTPUT 1
-   )
--  INSTALL(TARGETS sundials_nvecraja_static DESTINATION lib)
-+  INSTALL(TARGETS sundials_nvecraja_static DESTINATION lib64)
- ENDIF(BUILD_STATIC_LIBS)
- 
- # Rules for building and installing the shared library:
-@@ -72,7 +72,7 @@ IF(BUILD_SHARED_LIBS)
- #  SET_TARGET_PROPERTIES(sundials_nvecraja_shared 
- #    PROPERTIES INSTALL_RPATH_USE_LINK_PATH TRUE
- #  )
--  INSTALL(TARGETS sundials_nvecraja_shared DESTINATION lib)
-+  INSTALL(TARGETS sundials_nvecraja_shared DESTINATION lib64)
- ENDIF(BUILD_SHARED_LIBS)
- 
- # Install the NVECRAJA header files
 diff -purN sundials-3.1.1.org/src/nvec_ser/CMakeLists.txt sundials-3.1.1/src/nvec_ser/CMakeLists.txt
 --- sundials-3.1.1.org/src/nvec_ser/CMakeLists.txt	2018-05-07 20:24:50.000000000 +0000
 +++ sundials-3.1.1/src/nvec_ser/CMakeLists.txt	2018-07-29 23:54:55.214791341 +0000
