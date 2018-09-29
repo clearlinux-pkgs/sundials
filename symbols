@@ -555,6 +555,7 @@ libsundials_cvode.so.3:CVodeReInit
 libsundials_cvode.so.3:CVodeRootInit
 libsundials_cvode.so.3:CVodeSStolerances
 libsundials_cvode.so.3:CVodeSVtolerances
+libsundials_cvode.so.3:CVodeSetConstraints
 libsundials_cvode.so.3:CVodeSetErrFile
 libsundials_cvode.so.3:CVodeSetErrHandlerFn
 libsundials_cvode.so.3:CVodeSetInitStep
@@ -1051,6 +1052,8 @@ libsundials_cvodes.so.3:CVodeSensSStolerances
 libsundials_cvodes.so.3:CVodeSensSVtolerances
 libsundials_cvodes.so.3:CVodeSensToggleOff
 libsundials_cvodes.so.3:CVodeSetAdjNoSensi
+libsundials_cvodes.so.3:CVodeSetConstraints
+libsundials_cvodes.so.3:CVodeSetConstraintsB
 libsundials_cvodes.so.3:CVodeSetErrFile
 libsundials_cvodes.so.3:CVodeSetErrHandlerFn
 libsundials_cvodes.so.3:CVodeSetInitStep
