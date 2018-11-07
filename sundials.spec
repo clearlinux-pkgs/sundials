@@ -4,14 +4,14 @@
 #
 Name     : sundials
 Version  : 3.2.0
-Release  : 7
+Release  : 8
 URL      : https://github.com/LLNL/sundials/archive/v3.2.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v3.2.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: sundials-lib
-Requires: sundials-license
+Requires: sundials-lib = %{version}-%{release}
+Requires: sundials-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : cmake
 BuildRequires : glibc-dev
@@ -25,6 +25,14 @@ KINSOL
 Release 3.2.0, Sept 2018
 Aaron Collier, Alan C. Hindmarsh, Radu Serban, and Carol S. Woodward
 Center for Applied Scientific Computing, LLNL
+
+%package abi
+Summary: abi components for the sundials package.
+Group: Default
+
+%description abi
+abi components for the sundials package.
+
 
 %package dev
 Summary: dev components for the sundials package.
@@ -68,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1538256829
+export SOURCE_DATE_EPOCH=1541625971
 mkdir -p clr-build
 pushd clr-build
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -76,7 +84,7 @@ export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-i
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 mkdir -p clr-build-avx2
 pushd clr-build-avx2
@@ -87,7 +95,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 export CFLAGS="$CFLAGS -march=haswell -m64"
 export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
 %cmake ..
-make VERBOSE=1  %{?_smp_mflags}  || :
+make  %{?_smp_mflags} VERBOSE=1
 popd
 mkdir -p clr-build-avx512
 pushd clr-build-avx512
@@ -98,20 +106,20 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
 export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
 %cmake ..
-make VERBOSE=1  %{?_smp_mflags}  || :
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1538256829
+export SOURCE_DATE_EPOCH=1541625971
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/sundials
-cp LICENSE %{buildroot}/usr/share/doc/sundials/LICENSE
-cp src/arkode/LICENSE %{buildroot}/usr/share/doc/sundials/src_arkode_LICENSE
-cp src/cvode/LICENSE %{buildroot}/usr/share/doc/sundials/src_cvode_LICENSE
-cp src/cvodes/LICENSE %{buildroot}/usr/share/doc/sundials/src_cvodes_LICENSE
-cp src/ida/LICENSE %{buildroot}/usr/share/doc/sundials/src_ida_LICENSE
-cp src/idas/LICENSE %{buildroot}/usr/share/doc/sundials/src_idas_LICENSE
-cp src/kinsol/LICENSE %{buildroot}/usr/share/doc/sundials/src_kinsol_LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/sundials
+cp LICENSE %{buildroot}/usr/share/package-licenses/sundials/LICENSE
+cp src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_arkode_LICENSE
+cp src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_cvode_LICENSE
+cp src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_cvodes_LICENSE
+cp src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_ida_LICENSE
+cp src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_idas_LICENSE
+cp src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/src_kinsol_LICENSE
 pushd clr-build-avx512
 %make_install_avx512  || :
 popd
@@ -356,6 +364,43 @@ popd
 /usr/examples/sunmatrix/sparse/test_sunmatrix.h
 /usr/examples/sunmatrix/sparse/test_sunmatrix_sparse.c
 
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libsundials_arkode.so.2.2.0.abi
+/usr/share/abi/libsundials_arkode.so.2.abi
+/usr/share/abi/libsundials_cvode.so.3.2.0.abi
+/usr/share/abi/libsundials_cvode.so.3.abi
+/usr/share/abi/libsundials_cvodes.so.3.2.0.abi
+/usr/share/abi/libsundials_cvodes.so.3.abi
+/usr/share/abi/libsundials_ida.so.3.2.0.abi
+/usr/share/abi/libsundials_ida.so.3.abi
+/usr/share/abi/libsundials_idas.so.2.2.0.abi
+/usr/share/abi/libsundials_idas.so.2.abi
+/usr/share/abi/libsundials_kinsol.so.3.2.0.abi
+/usr/share/abi/libsundials_kinsol.so.3.abi
+/usr/share/abi/libsundials_nvecserial.so.3.2.0.abi
+/usr/share/abi/libsundials_nvecserial.so.3.abi
+/usr/share/abi/libsundials_sunlinsolband.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolband.so.1.abi
+/usr/share/abi/libsundials_sunlinsoldense.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsoldense.so.1.abi
+/usr/share/abi/libsundials_sunlinsolpcg.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolpcg.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspbcgs.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolspbcgs.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspfgmr.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolspfgmr.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspgmr.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolspgmr.so.1.abi
+/usr/share/abi/libsundials_sunlinsolsptfqmr.so.1.2.0.abi
+/usr/share/abi/libsundials_sunlinsolsptfqmr.so.1.abi
+/usr/share/abi/libsundials_sunmatrixband.so.1.2.0.abi
+/usr/share/abi/libsundials_sunmatrixband.so.1.abi
+/usr/share/abi/libsundials_sunmatrixdense.so.1.2.0.abi
+/usr/share/abi/libsundials_sunmatrixdense.so.1.abi
+/usr/share/abi/libsundials_sunmatrixsparse.so.1.2.0.abi
+/usr/share/abi/libsundials_sunmatrixsparse.so.1.abi
+
 %files dev
 %defattr(-,root,root,-)
 /usr/include/arkode/arkode.h
@@ -426,6 +471,22 @@ popd
 /usr/include/sunmatrix/sunmatrix_band.h
 /usr/include/sunmatrix/sunmatrix_dense.h
 /usr/include/sunmatrix/sunmatrix_sparse.h
+/usr/lib64/haswell/avx512_1/libsundials_arkode.so
+/usr/lib64/haswell/avx512_1/libsundials_cvode.so
+/usr/lib64/haswell/avx512_1/libsundials_cvodes.so
+/usr/lib64/haswell/avx512_1/libsundials_ida.so
+/usr/lib64/haswell/avx512_1/libsundials_idas.so
+/usr/lib64/haswell/avx512_1/libsundials_kinsol.so
+/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so
 /usr/lib64/haswell/libsundials_arkode.so
 /usr/lib64/haswell/libsundials_cvode.so
 /usr/lib64/haswell/libsundials_cvodes.so
@@ -463,52 +524,36 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/haswell/avx512_1/libsundials_arkode.so
 /usr/lib64/haswell/avx512_1/libsundials_arkode.so.2
 /usr/lib64/haswell/avx512_1/libsundials_arkode.so.2.2.0
-/usr/lib64/haswell/avx512_1/libsundials_cvode.so
 /usr/lib64/haswell/avx512_1/libsundials_cvode.so.3
 /usr/lib64/haswell/avx512_1/libsundials_cvode.so.3.2.0
-/usr/lib64/haswell/avx512_1/libsundials_cvodes.so
 /usr/lib64/haswell/avx512_1/libsundials_cvodes.so.3
 /usr/lib64/haswell/avx512_1/libsundials_cvodes.so.3.2.0
-/usr/lib64/haswell/avx512_1/libsundials_ida.so
 /usr/lib64/haswell/avx512_1/libsundials_ida.so.3
 /usr/lib64/haswell/avx512_1/libsundials_ida.so.3.2.0
-/usr/lib64/haswell/avx512_1/libsundials_idas.so
 /usr/lib64/haswell/avx512_1/libsundials_idas.so.2
 /usr/lib64/haswell/avx512_1/libsundials_idas.so.2.2.0
-/usr/lib64/haswell/avx512_1/libsundials_kinsol.so
 /usr/lib64/haswell/avx512_1/libsundials_kinsol.so.3
 /usr/lib64/haswell/avx512_1/libsundials_kinsol.so.3.2.0
-/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so
 /usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.3
 /usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.3.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.1.2.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.1
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.1.2.0
 /usr/lib64/haswell/libsundials_arkode.so.2
@@ -582,10 +627,10 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/doc/sundials/LICENSE
-/usr/share/doc/sundials/src_arkode_LICENSE
-/usr/share/doc/sundials/src_cvode_LICENSE
-/usr/share/doc/sundials/src_cvodes_LICENSE
-/usr/share/doc/sundials/src_ida_LICENSE
-/usr/share/doc/sundials/src_idas_LICENSE
-/usr/share/doc/sundials/src_kinsol_LICENSE
+/usr/share/package-licenses/sundials/LICENSE
+/usr/share/package-licenses/sundials/src_arkode_LICENSE
+/usr/share/package-licenses/sundials/src_cvode_LICENSE
+/usr/share/package-licenses/sundials/src_cvodes_LICENSE
+/usr/share/package-licenses/sundials/src_ida_LICENSE
+/usr/share/package-licenses/sundials/src_idas_LICENSE
+/usr/share/package-licenses/sundials/src_kinsol_LICENSE
