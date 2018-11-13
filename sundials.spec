@@ -4,7 +4,7 @@
 #
 Name     : sundials
 Version  : 3.2.0
-Release  : 9
+Release  : 10
 URL      : https://github.com/LLNL/sundials/archive/v3.2.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v3.2.0.tar.gz
 Summary  : No detailed summary available
@@ -76,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542061917
+export SOURCE_DATE_EPOCH=1542072496
 mkdir -p clr-build
 pushd clr-build
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -110,7 +110,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542061917
+export SOURCE_DATE_EPOCH=1542072496
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp LICENSE %{buildroot}/usr/share/package-licenses/sundials/LICENSE
@@ -366,23 +366,23 @@ popd
 
 %files abi
 %defattr(-,root,root,-)
-/usr/share/abi/libsundials_arkode.so.2.2.0.abi
-/usr/share/abi/libsundials_cvode.so.3.2.0.abi
-/usr/share/abi/libsundials_cvodes.so.3.2.0.abi
-/usr/share/abi/libsundials_ida.so.3.2.0.abi
-/usr/share/abi/libsundials_idas.so.2.2.0.abi
-/usr/share/abi/libsundials_kinsol.so.3.2.0.abi
-/usr/share/abi/libsundials_nvecserial.so.3.2.0.abi
-/usr/share/abi/libsundials_sunlinsolband.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsoldense.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsolpcg.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsolspbcgs.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsolspfgmr.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsolspgmr.so.1.2.0.abi
-/usr/share/abi/libsundials_sunlinsolsptfqmr.so.1.2.0.abi
-/usr/share/abi/libsundials_sunmatrixband.so.1.2.0.abi
-/usr/share/abi/libsundials_sunmatrixdense.so.1.2.0.abi
-/usr/share/abi/libsundials_sunmatrixsparse.so.1.2.0.abi
+/usr/share/abi/libsundials_arkode.so.2.abi
+/usr/share/abi/libsundials_cvode.so.3.abi
+/usr/share/abi/libsundials_cvodes.so.3.abi
+/usr/share/abi/libsundials_ida.so.3.abi
+/usr/share/abi/libsundials_idas.so.2.abi
+/usr/share/abi/libsundials_kinsol.so.3.abi
+/usr/share/abi/libsundials_nvecserial.so.3.abi
+/usr/share/abi/libsundials_sunlinsolband.so.1.abi
+/usr/share/abi/libsundials_sunlinsoldense.so.1.abi
+/usr/share/abi/libsundials_sunlinsolpcg.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspbcgs.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspfgmr.so.1.abi
+/usr/share/abi/libsundials_sunlinsolspgmr.so.1.abi
+/usr/share/abi/libsundials_sunlinsolsptfqmr.so.1.abi
+/usr/share/abi/libsundials_sunmatrixband.so.1.abi
+/usr/share/abi/libsundials_sunmatrixdense.so.1.abi
+/usr/share/abi/libsundials_sunmatrixsparse.so.1.abi
 
 %files dev
 %defattr(-,root,root,-)
