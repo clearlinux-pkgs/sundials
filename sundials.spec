@@ -4,7 +4,7 @@
 #
 Name     : sundials
 Version  : 3.2.1
-Release  : 11
+Release  : 12
 URL      : https://github.com/LLNL/sundials/archive/v3.2.1.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v3.2.1.tar.gz
 Summary  : No detailed summary available
@@ -24,14 +24,6 @@ KINSOL
 Release 3.2.1, Oct 2018
 Aaron Collier, Alan C. Hindmarsh, Radu Serban, and Carol S. Woodward
 Center for Applied Scientific Computing, LLNL
-
-%package abi
-Summary: abi components for the sundials package.
-Group: Default
-
-%description abi
-abi components for the sundials package.
-
 
 %package dev
 Summary: dev components for the sundials package.
@@ -74,7 +66,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542135703
+export SOURCE_DATE_EPOCH=1542756772
 mkdir -p clr-build
 pushd clr-build
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -108,7 +100,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542135703
+export SOURCE_DATE_EPOCH=1542756772
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp LICENSE %{buildroot}/usr/share/package-licenses/sundials/LICENSE
@@ -361,26 +353,6 @@ popd
 /usr/examples/sunmatrix/sparse/test_sunmatrix.c
 /usr/examples/sunmatrix/sparse/test_sunmatrix.h
 /usr/examples/sunmatrix/sparse/test_sunmatrix_sparse.c
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libsundials_arkode.so.2.abi
-/usr/share/abi/libsundials_cvode.so.3.abi
-/usr/share/abi/libsundials_cvodes.so.3.abi
-/usr/share/abi/libsundials_ida.so.3.abi
-/usr/share/abi/libsundials_idas.so.2.abi
-/usr/share/abi/libsundials_kinsol.so.3.abi
-/usr/share/abi/libsundials_nvecserial.so.3.abi
-/usr/share/abi/libsundials_sunlinsolband.so.1.abi
-/usr/share/abi/libsundials_sunlinsoldense.so.1.abi
-/usr/share/abi/libsundials_sunlinsolpcg.so.1.abi
-/usr/share/abi/libsundials_sunlinsolspbcgs.so.1.abi
-/usr/share/abi/libsundials_sunlinsolspfgmr.so.1.abi
-/usr/share/abi/libsundials_sunlinsolspgmr.so.1.abi
-/usr/share/abi/libsundials_sunlinsolsptfqmr.so.1.abi
-/usr/share/abi/libsundials_sunmatrixband.so.1.abi
-/usr/share/abi/libsundials_sunmatrixdense.so.1.abi
-/usr/share/abi/libsundials_sunmatrixsparse.so.1.abi
 
 %files dev
 %defattr(-,root,root,-)
