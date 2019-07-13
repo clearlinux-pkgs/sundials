@@ -4,10 +4,10 @@
 #
 Name     : sundials
 Version  : 4.1.0
-Release  : 17
+Release  : 18
 URL      : https://github.com/LLNL/sundials/archive/v4.1.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v4.1.0.tar.gz
-Summary  : Suite of nonlinear differential/algebraic equation solvers
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: sundials-lib = %{version}-%{release}
@@ -20,24 +20,17 @@ BuildRequires : openmpi-dev
 BuildRequires : python3
 
 %description
-List of serial IDA examples
-idaFoodWeb_bnd   : 2-D food web system, banded Jacobian
-idaFoodWeb_kry   : 2-D food web system using Krylov solver
-idaHeat2D_bnd    : 2-D heat equation, banded Jacobian
-idaHeat2D_kry    : 2-D heat equation, diagonal preconditioner
-idaHeat2D_klu    : heat equation with KLU sparse linear solver
-idaHeat2D_sps    : heat equation with SuperLUMT sparse linear solver
-idaKrylovDemo_ls : demonstration program with 3 Krylov solvers
-idaRoberts_dns   : 3-species Robertson kinetics system
-idaRoberts_klu   : Robertson system with KLU sparse linear solver
-idaRoberts_sps   : Robertson system with SuperLUMT sparse linear solver
-idaSlCrank_dns   : slider-crank example (stabilized index-2 DAE)
+KINSOL
+Release 4.1.0, Feb 2019
+Aaron Collier, Alan C. Hindmarsh, Radu Serban, and Carol S. Woodward
+Center for Applied Scientific Computing, LLNL
 
 %package dev
 Summary: dev components for the sundials package.
 Group: Development
 Requires: sundials-lib = %{version}-%{release}
 Provides: sundials-devel = %{version}-%{release}
+Requires: sundials = %{version}-%{release}
 
 %description dev
 dev components for the sundials package.
@@ -62,53 +55,50 @@ license components for the sundials package.
 
 %prep
 %setup -q -n sundials-4.1.0
-pushd ..
-cp -a sundials-4.1.0 buildavx2
-popd
-pushd ..
-cp -a sundials-4.1.0 buildavx512
-popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1550338571
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562977578
 mkdir -p clr-build
 pushd clr-build
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 mkdir -p clr-build-avx2
 pushd clr-build-avx2
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
 export CFLAGS="$CFLAGS -march=haswell -m64"
 export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 mkdir -p clr-build-avx512
 pushd clr-build-avx512
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
 export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
 export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550338571
+export SOURCE_DATE_EPOCH=1562977578
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp LICENSE %{buildroot}/usr/share/package-licenses/sundials/LICENSE
@@ -469,11 +459,8 @@ popd
 /usr/lib64/haswell/avx512_1/libsundials_nvecserial.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so
@@ -537,16 +524,10 @@ popd
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.2.1.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.2
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.2.1.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.2
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.2.1.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.2
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.2.1.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.2
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.2.1.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.2
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.2.1.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.2
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.2.1.0
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.2
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.2.1.0
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.2
