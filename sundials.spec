@@ -4,7 +4,7 @@
 #
 Name     : sundials
 Version  : 5.0.0
-Release  : 20
+Release  : 21
 URL      : https://github.com/LLNL/sundials/archive/v5.0.0/sundials-5.0.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v5.0.0/sundials-5.0.0.tar.gz
 Summary  : Suite of nonlinear differential/algebraic equation solvers
