@@ -1,0 +1,6 @@
+SUNDIALS is a family of software packages implemented with the goal of providing
+robust time integrators and nonlinear solvers that can easily be incorporated
+into existing simulation codes. The primary design goals are to require minimal
+information from the user, allow users to easily supply their own data structures
+underneath the packages, and allow for easy incorporation of user-supplied linear
+solvers and preconditioners.

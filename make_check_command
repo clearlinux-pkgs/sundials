@@ -1,0 +1,13 @@
+pushd clr-build
+make test
+popd
+pushd clr-build-avx2
+if grep -q 'avx2[^ ]*' /proc/cpuinfo ; then
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell make test
+fi
+popd
+pushd clr-build-avx512
+if grep -q 'avx512[^ ]*' /proc/cpuinfo ; then
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell/avx512_1 make test
+fi
+popd
