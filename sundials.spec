@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 5.1.0
-Release  : 27
-URL      : https://github.com/LLNL/sundials/archive/v5.1.0/sundials-5.1.0.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v5.1.0/sundials-5.1.0.tar.gz
+Version  : 5.2.0
+Release  : 28
+URL      : https://github.com/LLNL/sundials/archive/v5.2.0/sundials-5.2.0.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v5.2.0/sundials-5.2.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -79,15 +79,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-5.1.0
-cd %{_builddir}/sundials-5.1.0
+%setup -q -n sundials-5.2.0
+cd %{_builddir}/sundials-5.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578698000
+export SOURCE_DATE_EPOCH=1585698328
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -200,16 +200,16 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1578698000
+export SOURCE_DATE_EPOCH=1585698328
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
-cp %{_builddir}/sundials-5.1.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
-cp %{_builddir}/sundials-5.1.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
+cp %{_builddir}/sundials-5.2.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/78a9df4fbe55cce0fbc1e171ec69d0db77b22096
 pushd clr-build-avx512
 %make_install_avx512  || :
 popd
@@ -700,135 +700,135 @@ rm -f %{buildroot}/usr/LICENSE
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/haswell/avx512_1/libsundials_arkode.so.4
-/usr/lib64/haswell/avx512_1/libsundials_arkode.so.4.1.0
+/usr/lib64/haswell/avx512_1/libsundials_arkode.so.4.2.0
 /usr/lib64/haswell/avx512_1/libsundials_cvode.so.5
-/usr/lib64/haswell/avx512_1/libsundials_cvode.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_cvode.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_cvodes.so.5
-/usr/lib64/haswell/avx512_1/libsundials_cvodes.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_cvodes.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_ida.so.5
-/usr/lib64/haswell/avx512_1/libsundials_ida.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_ida.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_idas.so.4
-/usr/lib64/haswell/avx512_1/libsundials_idas.so.4.1.0
+/usr/lib64/haswell/avx512_1/libsundials_idas.so.4.2.0
 /usr/lib64/haswell/avx512_1/libsundials_kinsol.so.5
-/usr/lib64/haswell/avx512_1/libsundials_kinsol.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_kinsol.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.5.1.0
+/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.5.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.3.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.3.2.0
 /usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolfixedpoint.so.2
-/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolfixedpoint.so.2.1.0
+/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolfixedpoint.so.2.2.0
 /usr/lib64/haswell/libsundials_arkode.so.4
-/usr/lib64/haswell/libsundials_arkode.so.4.1.0
+/usr/lib64/haswell/libsundials_arkode.so.4.2.0
 /usr/lib64/haswell/libsundials_cvode.so.5
-/usr/lib64/haswell/libsundials_cvode.so.5.1.0
+/usr/lib64/haswell/libsundials_cvode.so.5.2.0
 /usr/lib64/haswell/libsundials_cvodes.so.5
-/usr/lib64/haswell/libsundials_cvodes.so.5.1.0
+/usr/lib64/haswell/libsundials_cvodes.so.5.2.0
 /usr/lib64/haswell/libsundials_ida.so.5
-/usr/lib64/haswell/libsundials_ida.so.5.1.0
+/usr/lib64/haswell/libsundials_ida.so.5.2.0
 /usr/lib64/haswell/libsundials_idas.so.4
-/usr/lib64/haswell/libsundials_idas.so.4.1.0
+/usr/lib64/haswell/libsundials_idas.so.4.2.0
 /usr/lib64/haswell/libsundials_kinsol.so.5
-/usr/lib64/haswell/libsundials_kinsol.so.5.1.0
+/usr/lib64/haswell/libsundials_kinsol.so.5.2.0
 /usr/lib64/haswell/libsundials_nvecmanyvector.so.5
-/usr/lib64/haswell/libsundials_nvecmanyvector.so.5.1.0
+/usr/lib64/haswell/libsundials_nvecmanyvector.so.5.2.0
 /usr/lib64/haswell/libsundials_nvecopenmp.so.5
-/usr/lib64/haswell/libsundials_nvecopenmp.so.5.1.0
+/usr/lib64/haswell/libsundials_nvecopenmp.so.5.2.0
 /usr/lib64/haswell/libsundials_nvecpthreads.so.5
-/usr/lib64/haswell/libsundials_nvecpthreads.so.5.1.0
+/usr/lib64/haswell/libsundials_nvecpthreads.so.5.2.0
 /usr/lib64/haswell/libsundials_nvecserial.so.5
-/usr/lib64/haswell/libsundials_nvecserial.so.5.1.0
+/usr/lib64/haswell/libsundials_nvecserial.so.5.2.0
 /usr/lib64/haswell/libsundials_sunlinsolband.so.3
-/usr/lib64/haswell/libsundials_sunlinsolband.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolband.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsoldense.so.3
-/usr/lib64/haswell/libsundials_sunlinsoldense.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsoldense.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsolpcg.so.3
-/usr/lib64/haswell/libsundials_sunlinsolpcg.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolpcg.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsolspbcgs.so.3
-/usr/lib64/haswell/libsundials_sunlinsolspbcgs.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolspbcgs.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsolspfgmr.so.3
-/usr/lib64/haswell/libsundials_sunlinsolspfgmr.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolspfgmr.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsolspgmr.so.3
-/usr/lib64/haswell/libsundials_sunlinsolspgmr.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolspgmr.so.3.2.0
 /usr/lib64/haswell/libsundials_sunlinsolsptfqmr.so.3
-/usr/lib64/haswell/libsundials_sunlinsolsptfqmr.so.3.1.0
+/usr/lib64/haswell/libsundials_sunlinsolsptfqmr.so.3.2.0
 /usr/lib64/haswell/libsundials_sunmatrixband.so.3
-/usr/lib64/haswell/libsundials_sunmatrixband.so.3.1.0
+/usr/lib64/haswell/libsundials_sunmatrixband.so.3.2.0
 /usr/lib64/haswell/libsundials_sunmatrixdense.so.3
-/usr/lib64/haswell/libsundials_sunmatrixdense.so.3.1.0
+/usr/lib64/haswell/libsundials_sunmatrixdense.so.3.2.0
 /usr/lib64/haswell/libsundials_sunmatrixsparse.so.3
-/usr/lib64/haswell/libsundials_sunmatrixsparse.so.3.1.0
+/usr/lib64/haswell/libsundials_sunmatrixsparse.so.3.2.0
 /usr/lib64/haswell/libsundials_sunnonlinsolfixedpoint.so.2
-/usr/lib64/haswell/libsundials_sunnonlinsolfixedpoint.so.2.1.0
+/usr/lib64/haswell/libsundials_sunnonlinsolfixedpoint.so.2.2.0
 /usr/lib64/haswell/libsundials_sunnonlinsolnewton.so.2
-/usr/lib64/haswell/libsundials_sunnonlinsolnewton.so.2.1.0
+/usr/lib64/haswell/libsundials_sunnonlinsolnewton.so.2.2.0
 /usr/lib64/libsundials_arkode.so.4
-/usr/lib64/libsundials_arkode.so.4.1.0
+/usr/lib64/libsundials_arkode.so.4.2.0
 /usr/lib64/libsundials_cvode.so.5
-/usr/lib64/libsundials_cvode.so.5.1.0
+/usr/lib64/libsundials_cvode.so.5.2.0
 /usr/lib64/libsundials_cvodes.so.5
-/usr/lib64/libsundials_cvodes.so.5.1.0
+/usr/lib64/libsundials_cvodes.so.5.2.0
 /usr/lib64/libsundials_ida.so.5
-/usr/lib64/libsundials_ida.so.5.1.0
+/usr/lib64/libsundials_ida.so.5.2.0
 /usr/lib64/libsundials_idas.so.4
-/usr/lib64/libsundials_idas.so.4.1.0
+/usr/lib64/libsundials_idas.so.4.2.0
 /usr/lib64/libsundials_kinsol.so.5
-/usr/lib64/libsundials_kinsol.so.5.1.0
+/usr/lib64/libsundials_kinsol.so.5.2.0
 /usr/lib64/libsundials_nvecmanyvector.so.5
-/usr/lib64/libsundials_nvecmanyvector.so.5.1.0
+/usr/lib64/libsundials_nvecmanyvector.so.5.2.0
 /usr/lib64/libsundials_nvecopenmp.so.5
-/usr/lib64/libsundials_nvecopenmp.so.5.1.0
+/usr/lib64/libsundials_nvecopenmp.so.5.2.0
 /usr/lib64/libsundials_nvecpthreads.so.5
-/usr/lib64/libsundials_nvecpthreads.so.5.1.0
+/usr/lib64/libsundials_nvecpthreads.so.5.2.0
 /usr/lib64/libsundials_nvecserial.so.5
-/usr/lib64/libsundials_nvecserial.so.5.1.0
+/usr/lib64/libsundials_nvecserial.so.5.2.0
 /usr/lib64/libsundials_sunlinsolband.so.3
-/usr/lib64/libsundials_sunlinsolband.so.3.1.0
+/usr/lib64/libsundials_sunlinsolband.so.3.2.0
 /usr/lib64/libsundials_sunlinsoldense.so.3
-/usr/lib64/libsundials_sunlinsoldense.so.3.1.0
+/usr/lib64/libsundials_sunlinsoldense.so.3.2.0
 /usr/lib64/libsundials_sunlinsolpcg.so.3
-/usr/lib64/libsundials_sunlinsolpcg.so.3.1.0
+/usr/lib64/libsundials_sunlinsolpcg.so.3.2.0
 /usr/lib64/libsundials_sunlinsolspbcgs.so.3
-/usr/lib64/libsundials_sunlinsolspbcgs.so.3.1.0
+/usr/lib64/libsundials_sunlinsolspbcgs.so.3.2.0
 /usr/lib64/libsundials_sunlinsolspfgmr.so.3
-/usr/lib64/libsundials_sunlinsolspfgmr.so.3.1.0
+/usr/lib64/libsundials_sunlinsolspfgmr.so.3.2.0
 /usr/lib64/libsundials_sunlinsolspgmr.so.3
-/usr/lib64/libsundials_sunlinsolspgmr.so.3.1.0
+/usr/lib64/libsundials_sunlinsolspgmr.so.3.2.0
 /usr/lib64/libsundials_sunlinsolsptfqmr.so.3
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.3.1.0
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.3.2.0
 /usr/lib64/libsundials_sunmatrixband.so.3
-/usr/lib64/libsundials_sunmatrixband.so.3.1.0
+/usr/lib64/libsundials_sunmatrixband.so.3.2.0
 /usr/lib64/libsundials_sunmatrixdense.so.3
-/usr/lib64/libsundials_sunmatrixdense.so.3.1.0
+/usr/lib64/libsundials_sunmatrixdense.so.3.2.0
 /usr/lib64/libsundials_sunmatrixsparse.so.3
-/usr/lib64/libsundials_sunmatrixsparse.so.3.1.0
+/usr/lib64/libsundials_sunmatrixsparse.so.3.2.0
 /usr/lib64/libsundials_sunnonlinsolfixedpoint.so.2
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.2.1.0
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.2.2.0
 /usr/lib64/libsundials_sunnonlinsolnewton.so.2
-/usr/lib64/libsundials_sunnonlinsolnewton.so.2.1.0
+/usr/lib64/libsundials_sunnonlinsolnewton.so.2.2.0
 
 %files license
 %defattr(0644,root,root,0755)

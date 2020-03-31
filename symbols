@@ -86,10 +86,13 @@ libsundials_arkode.so.4:ARKStepSetFixedStepBounds
 libsundials_arkode.so.4:ARKStepSetImEx
 libsundials_arkode.so.4:ARKStepSetImplicit
 libsundials_arkode.so.4:ARKStepSetInitStep
+libsundials_arkode.so.4:ARKStepSetInterpolantDegree
+libsundials_arkode.so.4:ARKStepSetInterpolantType
 libsundials_arkode.so.4:ARKStepSetJacFn
 libsundials_arkode.so.4:ARKStepSetJacTimes
 libsundials_arkode.so.4:ARKStepSetLinSysFn
 libsundials_arkode.so.4:ARKStepSetLinear
+libsundials_arkode.so.4:ARKStepSetLinearSolutionScaling
 libsundials_arkode.so.4:ARKStepSetLinearSolver
 libsundials_arkode.so.4:ARKStepSetMassEpsLin
 libsundials_arkode.so.4:ARKStepSetMassFn
@@ -109,6 +112,7 @@ libsundials_arkode.so.4:ARKStepSetMaxNumSteps
 libsundials_arkode.so.4:ARKStepSetMaxStep
 libsundials_arkode.so.4:ARKStepSetMaxStepsBetweenJac
 libsundials_arkode.so.4:ARKStepSetMaxStepsBetweenLSet
+libsundials_arkode.so.4:ARKStepSetMinReduction
 libsundials_arkode.so.4:ARKStepSetMinStep
 libsundials_arkode.so.4:ARKStepSetNoInactiveRootWarn
 libsundials_arkode.so.4:ARKStepSetNonlinCRDown
@@ -118,6 +122,7 @@ libsundials_arkode.so.4:ARKStepSetNonlinear
 libsundials_arkode.so.4:ARKStepSetNonlinearSolver
 libsundials_arkode.so.4:ARKStepSetOptimalParams
 libsundials_arkode.so.4:ARKStepSetOrder
+libsundials_arkode.so.4:ARKStepSetPostprocessStageFn
 libsundials_arkode.so.4:ARKStepSetPostprocessStepFn
 libsundials_arkode.so.4:ARKStepSetPreconditioner
 libsundials_arkode.so.4:ARKStepSetPredictorMethod
@@ -205,6 +210,8 @@ libsundials_arkode.so.4:ERKStepSetErrorBias
 libsundials_arkode.so.4:ERKStepSetFixedStep
 libsundials_arkode.so.4:ERKStepSetFixedStepBounds
 libsundials_arkode.so.4:ERKStepSetInitStep
+libsundials_arkode.so.4:ERKStepSetInterpolantDegree
+libsundials_arkode.so.4:ERKStepSetInterpolantType
 libsundials_arkode.so.4:ERKStepSetMaxEFailGrowth
 libsundials_arkode.so.4:ERKStepSetMaxErrTestFails
 libsundials_arkode.so.4:ERKStepSetMaxFirstGrowth
@@ -213,9 +220,11 @@ libsundials_arkode.so.4:ERKStepSetMaxHnilWarns
 libsundials_arkode.so.4:ERKStepSetMaxNumConstrFails
 libsundials_arkode.so.4:ERKStepSetMaxNumSteps
 libsundials_arkode.so.4:ERKStepSetMaxStep
+libsundials_arkode.so.4:ERKStepSetMinReduction
 libsundials_arkode.so.4:ERKStepSetMinStep
 libsundials_arkode.so.4:ERKStepSetNoInactiveRootWarn
 libsundials_arkode.so.4:ERKStepSetOrder
+libsundials_arkode.so.4:ERKStepSetPostprocessStageFn
 libsundials_arkode.so.4:ERKStepSetPostprocessStepFn
 libsundials_arkode.so.4:ERKStepSetRootDirection
 libsundials_arkode.so.4:ERKStepSetSafetyFactor
@@ -228,6 +237,10 @@ libsundials_arkode.so.4:ERKStepSetUserData
 libsundials_arkode.so.4:ERKStepWFtolerances
 libsundials_arkode.so.4:ERKStepWriteButcher
 libsundials_arkode.so.4:ERKStepWriteParameters
+libsundials_arkode.so.4:LBasis
+libsundials_arkode.so.4:LBasisD
+libsundials_arkode.so.4:LBasisD2
+libsundials_arkode.so.4:LBasisD3
 libsundials_arkode.so.4:MRIStepCreate
 libsundials_arkode.so.4:MRIStepEvolve
 libsundials_arkode.so.4:MRIStepFree
@@ -253,10 +266,13 @@ libsundials_arkode.so.4:MRIStepSetDiagnostics
 libsundials_arkode.so.4:MRIStepSetErrFile
 libsundials_arkode.so.4:MRIStepSetErrHandlerFn
 libsundials_arkode.so.4:MRIStepSetFixedStep
+libsundials_arkode.so.4:MRIStepSetInterpolantDegree
+libsundials_arkode.so.4:MRIStepSetInterpolantType
 libsundials_arkode.so.4:MRIStepSetMaxHnilWarns
 libsundials_arkode.so.4:MRIStepSetMaxNumSteps
 libsundials_arkode.so.4:MRIStepSetNoInactiveRootWarn
 libsundials_arkode.so.4:MRIStepSetPostInnerFn
+libsundials_arkode.so.4:MRIStepSetPostprocessStageFn
 libsundials_arkode.so.4:MRIStepSetPostprocessStepFn
 libsundials_arkode.so.4:MRIStepSetPreInnerFn
 libsundials_arkode.so.4:MRIStepSetRootDirection
@@ -266,8 +282,6 @@ libsundials_arkode.so.4:MRIStepSetTableNum
 libsundials_arkode.so.4:MRIStepSetUserData
 libsundials_arkode.so.4:MRIStepWriteButcher
 libsundials_arkode.so.4:MRIStepWriteParameters
-libsundials_arkode.so.4:Matvec_SparseCSC
-libsundials_arkode.so.4:Matvec_SparseCSR
 libsundials_arkode.so.4:ModifiedGS
 libsundials_arkode.so.4:N_VAbs
 libsundials_arkode.so.4:N_VAbs_SensWrapper
@@ -679,6 +693,8 @@ libsundials_arkode.so.4:SUNSparseMatrix_Realloc
 libsundials_arkode.so.4:SUNSparseMatrix_Reallocate
 libsundials_arkode.so.4:SUNSparseMatrix_Rows
 libsundials_arkode.so.4:SUNSparseMatrix_SparseType
+libsundials_arkode.so.4:SUNSparseMatrix_ToCSC
+libsundials_arkode.so.4:SUNSparseMatrix_ToCSR
 libsundials_arkode.so.4:SetToZero
 libsundials_arkode.so.4:arkAccessHAdaptMem
 libsundials_arkode.so.4:arkAdapt
@@ -719,6 +735,7 @@ libsundials_arkode.so.4:arkGetNumConstrFails
 libsundials_arkode.so.4:arkGetNumErrTestFails
 libsundials_arkode.so.4:arkGetNumExpSteps
 libsundials_arkode.so.4:arkGetNumGEvals
+libsundials_arkode.so.4:arkGetNumStepAttempts
 libsundials_arkode.so.4:arkGetNumSteps
 libsundials_arkode.so.4:arkGetResWeights
 libsundials_arkode.so.4:arkGetReturnFlagName
@@ -730,12 +747,29 @@ libsundials_arkode.so.4:arkHandleFailure
 libsundials_arkode.so.4:arkHin
 libsundials_arkode.so.4:arkInit
 libsundials_arkode.so.4:arkInitialSetup
-libsundials_arkode.so.4:arkInterpCreate
+libsundials_arkode.so.4:arkInterpCreate_Hermite
+libsundials_arkode.so.4:arkInterpCreate_Lagrange
 libsundials_arkode.so.4:arkInterpEvaluate
+libsundials_arkode.so.4:arkInterpEvaluate_Hermite
+libsundials_arkode.so.4:arkInterpEvaluate_Lagrange
 libsundials_arkode.so.4:arkInterpFree
+libsundials_arkode.so.4:arkInterpFree_Hermite
+libsundials_arkode.so.4:arkInterpFree_Lagrange
 libsundials_arkode.so.4:arkInterpInit
+libsundials_arkode.so.4:arkInterpInit_Hermite
+libsundials_arkode.so.4:arkInterpInit_Lagrange
+libsundials_arkode.so.4:arkInterpPrintMem
+libsundials_arkode.so.4:arkInterpPrintMem_Hermite
+libsundials_arkode.so.4:arkInterpPrintMem_Lagrange
 libsundials_arkode.so.4:arkInterpResize
+libsundials_arkode.so.4:arkInterpResize_Hermite
+libsundials_arkode.so.4:arkInterpResize_Lagrange
+libsundials_arkode.so.4:arkInterpSetDegree
+libsundials_arkode.so.4:arkInterpSetDegree_Hermite
+libsundials_arkode.so.4:arkInterpSetDegree_Lagrange
 libsundials_arkode.so.4:arkInterpUpdate
+libsundials_arkode.so.4:arkInterpUpdate_Hermite
+libsundials_arkode.so.4:arkInterpUpdate_Lagrange
 libsundials_arkode.so.4:arkLSGetLastFlag
 libsundials_arkode.so.4:arkLSGetLastMassFlag
 libsundials_arkode.so.4:arkLSGetMassWorkSpace
@@ -762,6 +796,7 @@ libsundials_arkode.so.4:arkLSSetEpsLin
 libsundials_arkode.so.4:arkLSSetJacFn
 libsundials_arkode.so.4:arkLSSetJacTimes
 libsundials_arkode.so.4:arkLSSetLinSysFn
+libsundials_arkode.so.4:arkLSSetLinearSolutionScaling
 libsundials_arkode.so.4:arkLSSetLinearSolver
 libsundials_arkode.so.4:arkLSSetMassEpsLin
 libsundials_arkode.so.4:arkLSSetMassFn
@@ -800,7 +835,6 @@ libsundials_arkode.so.4:arkPredict_CutoffOrder
 libsundials_arkode.so.4:arkPredict_MaximumOrder
 libsundials_arkode.so.4:arkPredict_VariableOrder
 libsundials_arkode.so.4:arkPrintAdaptMem
-libsundials_arkode.so.4:arkPrintInterpMem
 libsundials_arkode.so.4:arkPrintMem
 libsundials_arkode.so.4:arkPrintRootMem
 libsundials_arkode.so.4:arkProcessError
@@ -826,7 +860,6 @@ libsundials_arkode.so.4:arkSetAdaptivityMethod
 libsundials_arkode.so.4:arkSetCFLFraction
 libsundials_arkode.so.4:arkSetConstraints
 libsundials_arkode.so.4:arkSetDefaults
-libsundials_arkode.so.4:arkSetDenseOrder
 libsundials_arkode.so.4:arkSetDiagnostics
 libsundials_arkode.so.4:arkSetErrFile
 libsundials_arkode.so.4:arkSetErrHandlerFn
@@ -834,6 +867,8 @@ libsundials_arkode.so.4:arkSetErrorBias
 libsundials_arkode.so.4:arkSetFixedStep
 libsundials_arkode.so.4:arkSetFixedStepBounds
 libsundials_arkode.so.4:arkSetInitStep
+libsundials_arkode.so.4:arkSetInterpolantDegree
+libsundials_arkode.so.4:arkSetInterpolantType
 libsundials_arkode.so.4:arkSetMaxCFailGrowth
 libsundials_arkode.so.4:arkSetMaxConvFails
 libsundials_arkode.so.4:arkSetMaxEFailGrowth
@@ -844,8 +879,10 @@ libsundials_arkode.so.4:arkSetMaxHnilWarns
 libsundials_arkode.so.4:arkSetMaxNumConstrFails
 libsundials_arkode.so.4:arkSetMaxNumSteps
 libsundials_arkode.so.4:arkSetMaxStep
+libsundials_arkode.so.4:arkSetMinReduction
 libsundials_arkode.so.4:arkSetMinStep
 libsundials_arkode.so.4:arkSetNoInactiveRootWarn
+libsundials_arkode.so.4:arkSetPostprocessStageFn
 libsundials_arkode.so.4:arkSetPostprocessStepFn
 libsundials_arkode.so.4:arkSetRootDirection
 libsundials_arkode.so.4:arkSetSafetyFactor
@@ -1017,6 +1054,7 @@ libsundials_cvode.so.5:CVodeSetInitStep
 libsundials_cvode.so.5:CVodeSetJacFn
 libsundials_cvode.so.5:CVodeSetJacTimes
 libsundials_cvode.so.5:CVodeSetLinSysFn
+libsundials_cvode.so.5:CVodeSetLinearSolutionScaling
 libsundials_cvode.so.5:CVodeSetLinearSolver
 libsundials_cvode.so.5:CVodeSetMaxConvFails
 libsundials_cvode.so.5:CVodeSetMaxErrTestFails
@@ -1048,8 +1086,6 @@ libsundials_cvode.so.5:DensePOTRS
 libsundials_cvode.so.5:DenseScale
 libsundials_cvode.so.5:DestroyArray
 libsundials_cvode.so.5:DestroyMat
-libsundials_cvode.so.5:Matvec_SparseCSC
-libsundials_cvode.so.5:Matvec_SparseCSR
 libsundials_cvode.so.5:ModifiedGS
 libsundials_cvode.so.5:N_VAbs
 libsundials_cvode.so.5:N_VAbs_SensWrapper
@@ -1461,6 +1497,8 @@ libsundials_cvode.so.5:SUNSparseMatrix_Realloc
 libsundials_cvode.so.5:SUNSparseMatrix_Reallocate
 libsundials_cvode.so.5:SUNSparseMatrix_Rows
 libsundials_cvode.so.5:SUNSparseMatrix_SparseType
+libsundials_cvode.so.5:SUNSparseMatrix_ToCSC
+libsundials_cvode.so.5:SUNSparseMatrix_ToCSR
 libsundials_cvode.so.5:SetToZero
 libsundials_cvode.so.5:bandAddIdentity
 libsundials_cvode.so.5:bandCopy
@@ -1690,6 +1728,8 @@ libsundials_cvodes.so.5:CVodeSetJacTimesBS
 libsundials_cvodes.so.5:CVodeSetLinSysFn
 libsundials_cvodes.so.5:CVodeSetLinSysFnB
 libsundials_cvodes.so.5:CVodeSetLinSysFnBS
+libsundials_cvodes.so.5:CVodeSetLinearSolutionScaling
+libsundials_cvodes.so.5:CVodeSetLinearSolutionScalingB
 libsundials_cvodes.so.5:CVodeSetLinearSolver
 libsundials_cvodes.so.5:CVodeSetLinearSolverB
 libsundials_cvodes.so.5:CVodeSetMaxConvFails
@@ -1741,8 +1781,6 @@ libsundials_cvodes.so.5:DensePOTRS
 libsundials_cvodes.so.5:DenseScale
 libsundials_cvodes.so.5:DestroyArray
 libsundials_cvodes.so.5:DestroyMat
-libsundials_cvodes.so.5:Matvec_SparseCSC
-libsundials_cvodes.so.5:Matvec_SparseCSR
 libsundials_cvodes.so.5:ModifiedGS
 libsundials_cvodes.so.5:N_VAbs
 libsundials_cvodes.so.5:N_VAbs_SensWrapper
@@ -2154,6 +2192,8 @@ libsundials_cvodes.so.5:SUNSparseMatrix_Realloc
 libsundials_cvodes.so.5:SUNSparseMatrix_Reallocate
 libsundials_cvodes.so.5:SUNSparseMatrix_Rows
 libsundials_cvodes.so.5:SUNSparseMatrix_SparseType
+libsundials_cvodes.so.5:SUNSparseMatrix_ToCSC
+libsundials_cvodes.so.5:SUNSparseMatrix_ToCSR
 libsundials_cvodes.so.5:SetToZero
 libsundials_cvodes.so.5:bandAddIdentity
 libsundials_cvodes.so.5:bandCopy
@@ -2299,6 +2339,7 @@ libsundials_ida.so.5:IDASetInitStep
 libsundials_ida.so.5:IDASetJacFn
 libsundials_ida.so.5:IDASetJacTimes
 libsundials_ida.so.5:IDASetLineSearchOffIC
+libsundials_ida.so.5:IDASetLinearSolutionScaling
 libsundials_ida.so.5:IDASetLinearSolver
 libsundials_ida.so.5:IDASetMaxBacksIC
 libsundials_ida.so.5:IDASetMaxConvFails
@@ -2338,8 +2379,6 @@ libsundials_ida.so.5:IDASpilsSetLinearSolver
 libsundials_ida.so.5:IDASpilsSetPreconditioner
 libsundials_ida.so.5:IDAWFtolerances
 libsundials_ida.so.5:IDAWrmsNorm
-libsundials_ida.so.5:Matvec_SparseCSC
-libsundials_ida.so.5:Matvec_SparseCSR
 libsundials_ida.so.5:ModifiedGS
 libsundials_ida.so.5:N_VAbs
 libsundials_ida.so.5:N_VAbs_SensWrapper
@@ -2751,6 +2790,8 @@ libsundials_ida.so.5:SUNSparseMatrix_Realloc
 libsundials_ida.so.5:SUNSparseMatrix_Reallocate
 libsundials_ida.so.5:SUNSparseMatrix_Rows
 libsundials_ida.so.5:SUNSparseMatrix_SparseType
+libsundials_ida.so.5:SUNSparseMatrix_ToCSC
+libsundials_ida.so.5:SUNSparseMatrix_ToCSR
 libsundials_ida.so.5:SetToZero
 libsundials_ida.so.5:bandAddIdentity
 libsundials_ida.so.5:bandCopy
@@ -2977,6 +3018,8 @@ libsundials_idas.so.4:IDASetJacTimes
 libsundials_idas.so.4:IDASetJacTimesB
 libsundials_idas.so.4:IDASetJacTimesBS
 libsundials_idas.so.4:IDASetLineSearchOffIC
+libsundials_idas.so.4:IDASetLinearSolutionScaling
+libsundials_idas.so.4:IDASetLinearSolutionScalingB
 libsundials_idas.so.4:IDASetLinearSolver
 libsundials_idas.so.4:IDASetLinearSolverB
 libsundials_idas.so.4:IDASetMaxBacksIC
@@ -3043,8 +3086,6 @@ libsundials_idas.so.4:IDASpilsSetPreconditionerB
 libsundials_idas.so.4:IDASpilsSetPreconditionerBS
 libsundials_idas.so.4:IDAWFtolerances
 libsundials_idas.so.4:IDAWrmsNorm
-libsundials_idas.so.4:Matvec_SparseCSC
-libsundials_idas.so.4:Matvec_SparseCSR
 libsundials_idas.so.4:ModifiedGS
 libsundials_idas.so.4:N_VAbs
 libsundials_idas.so.4:N_VAbs_SensWrapper
@@ -3456,6 +3497,8 @@ libsundials_idas.so.4:SUNSparseMatrix_Realloc
 libsundials_idas.so.4:SUNSparseMatrix_Reallocate
 libsundials_idas.so.4:SUNSparseMatrix_Rows
 libsundials_idas.so.4:SUNSparseMatrix_SparseType
+libsundials_idas.so.4:SUNSparseMatrix_ToCSC
+libsundials_idas.so.4:SUNSparseMatrix_ToCSR
 libsundials_idas.so.4:SetToZero
 libsundials_idas.so.4:bandAddIdentity
 libsundials_idas.so.4:bandCopy
@@ -3596,8 +3639,6 @@ libsundials_kinsol.so.5:KINSpilsGetWorkSpace
 libsundials_kinsol.so.5:KINSpilsSetJacTimesVecFn
 libsundials_kinsol.so.5:KINSpilsSetLinearSolver
 libsundials_kinsol.so.5:KINSpilsSetPreconditioner
-libsundials_kinsol.so.5:Matvec_SparseCSC
-libsundials_kinsol.so.5:Matvec_SparseCSR
 libsundials_kinsol.so.5:ModifiedGS
 libsundials_kinsol.so.5:N_VAbs
 libsundials_kinsol.so.5:N_VAbs_Serial
@@ -3956,6 +3997,8 @@ libsundials_kinsol.so.5:SUNSparseMatrix_Realloc
 libsundials_kinsol.so.5:SUNSparseMatrix_Reallocate
 libsundials_kinsol.so.5:SUNSparseMatrix_Rows
 libsundials_kinsol.so.5:SUNSparseMatrix_SparseType
+libsundials_kinsol.so.5:SUNSparseMatrix_ToCSC
+libsundials_kinsol.so.5:SUNSparseMatrix_ToCSR
 libsundials_kinsol.so.5:SetToZero
 libsundials_kinsol.so.5:bandAddIdentity
 libsundials_kinsol.so.5:bandCopy
@@ -5205,8 +5248,6 @@ libsundials_sunmatrixdense.so.3:SUNMatZero
 libsundials_sunmatrixdense.so.3:SUNMatZero_Dense
 libsundials_sunmatrixdense.so.3:SUNRpowerI
 libsundials_sunmatrixdense.so.3:SUNRpowerR
-libsundials_sunmatrixsparse.so.3:Matvec_SparseCSC
-libsundials_sunmatrixsparse.so.3:Matvec_SparseCSR
 libsundials_sunmatrixsparse.so.3:N_VAbs
 libsundials_sunmatrixsparse.so.3:N_VAddConst
 libsundials_sunmatrixsparse.so.3:N_VClone
@@ -5301,6 +5342,8 @@ libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_Realloc
 libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_Reallocate
 libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_Rows
 libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_SparseType
+libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_ToCSC
+libsundials_sunmatrixsparse.so.3:SUNSparseMatrix_ToCSR
 libsundials_sunnonlinsolfixedpoint.so.2:N_VAbs
 libsundials_sunnonlinsolfixedpoint.so.2:N_VAbs_SensWrapper
 libsundials_sunnonlinsolfixedpoint.so.2:N_VAddConst
