@@ -5,13 +5,14 @@
 %define keepstatic 1
 Name     : sundials
 Version  : 5.8.0
-Release  : 38
+Release  : 39
 URL      : https://github.com/LLNL/sundials/archive/v5.8.0/sundials-5.8.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v5.8.0/sundials-5.8.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: sundials-data = %{version}-%{release}
+Requires: sundials-filemap = %{version}-%{release}
 Requires: sundials-lib = %{version}-%{release}
 Requires: sundials-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -50,11 +51,20 @@ Requires: sundials = %{version}-%{release}
 dev components for the sundials package.
 
 
+%package filemap
+Summary: filemap components for the sundials package.
+Group: Default
+
+%description filemap
+filemap components for the sundials package.
+
+
 %package lib
 Summary: lib components for the sundials package.
 Group: Libraries
 Requires: sundials-data = %{version}-%{release}
 Requires: sundials-license = %{version}-%{release}
+Requires: sundials-filemap = %{version}-%{release}
 
 %description lib
 lib components for the sundials package.
@@ -86,17 +96,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633104642
+export SOURCE_DATE_EPOCH=1633813052
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
 -DBUILD_TESTING=ON \
@@ -121,10 +131,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64"
@@ -153,14 +163,14 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
-export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
-export FFLAGS="$FFLAGS -march=skylake-avx512 -m64 "
-export FCFLAGS="$FCFLAGS -march=skylake-avx512 -m64 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 "
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 "
+export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 "
+export FCFLAGS="$FCFLAGS -march=x86-64-v4 -m64 "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
 -DBUILD_TESTING=ON \
@@ -200,7 +210,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1633104642
+export SOURCE_DATE_EPOCH=1633813052
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp %{_builddir}/sundials-5.8.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
@@ -210,11 +220,13 @@ cp %{_builddir}/sundials-5.8.0/src/cvodes/LICENSE %{buildroot}/usr/share/package
 cp %{_builddir}/sundials-5.8.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
 cp %{_builddir}/sundials-5.8.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
 cp %{_builddir}/sundials-5.8.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-pushd clr-build-avx512
-%make_install_avx512  || :
-popd
 pushd clr-build-avx2
-%make_install_avx2  || :
+%make_install_v3  || :
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+popd
+pushd clr-build-avx512
+%make_install_v4  || :
+/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 pushd clr-build
 %make_install
@@ -689,52 +701,6 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/lib64/cmake/sundials/SUNDIALSConfigVersion.cmake
 /usr/lib64/cmake/sundials/SUNDIALSTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/sundials/SUNDIALSTargets.cmake
-/usr/lib64/haswell/avx512_1/libsundials_arkode.so
-/usr/lib64/haswell/avx512_1/libsundials_cvode.so
-/usr/lib64/haswell/avx512_1/libsundials_cvodes.so
-/usr/lib64/haswell/avx512_1/libsundials_generic.so
-/usr/lib64/haswell/avx512_1/libsundials_ida.so
-/usr/lib64/haswell/avx512_1/libsundials_idas.so
-/usr/lib64/haswell/avx512_1/libsundials_kinsol.so
-/usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so
-/usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so
-/usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so
-/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so
-/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolfixedpoint.so
-/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolnewton.so
-/usr/lib64/haswell/libsundials_arkode.so
-/usr/lib64/haswell/libsundials_cvode.so
-/usr/lib64/haswell/libsundials_cvodes.so
-/usr/lib64/haswell/libsundials_generic.so
-/usr/lib64/haswell/libsundials_ida.so
-/usr/lib64/haswell/libsundials_idas.so
-/usr/lib64/haswell/libsundials_kinsol.so
-/usr/lib64/haswell/libsundials_nvecmanyvector.so
-/usr/lib64/haswell/libsundials_nvecopenmp.so
-/usr/lib64/haswell/libsundials_nvecpthreads.so
-/usr/lib64/haswell/libsundials_nvecserial.so
-/usr/lib64/haswell/libsundials_sunlinsolband.so
-/usr/lib64/haswell/libsundials_sunlinsoldense.so
-/usr/lib64/haswell/libsundials_sunlinsolpcg.so
-/usr/lib64/haswell/libsundials_sunlinsolspbcgs.so
-/usr/lib64/haswell/libsundials_sunlinsolspfgmr.so
-/usr/lib64/haswell/libsundials_sunlinsolspgmr.so
-/usr/lib64/haswell/libsundials_sunlinsolsptfqmr.so
-/usr/lib64/haswell/libsundials_sunmatrixband.so
-/usr/lib64/haswell/libsundials_sunmatrixdense.so
-/usr/lib64/haswell/libsundials_sunmatrixsparse.so
-/usr/lib64/haswell/libsundials_sunnonlinsolfixedpoint.so
-/usr/lib64/haswell/libsundials_sunnonlinsolnewton.so
 /usr/lib64/libsundials_arkode.so
 /usr/lib64/libsundials_cvode.so
 /usr/lib64/libsundials_cvodes.so
@@ -759,82 +725,12 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/lib64/libsundials_sunnonlinsolfixedpoint.so
 /usr/lib64/libsundials_sunnonlinsolnewton.so
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-sundials
+
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/haswell/avx512_1/libsundials_arkode.so.4
-/usr/lib64/haswell/avx512_1/libsundials_arkode.so.4.8.0
-/usr/lib64/haswell/avx512_1/libsundials_cvode.so.5
-/usr/lib64/haswell/avx512_1/libsundials_cvode.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_cvodes.so.5
-/usr/lib64/haswell/avx512_1/libsundials_cvodes.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_generic.so.5
-/usr/lib64/haswell/avx512_1/libsundials_generic.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_ida.so.5
-/usr/lib64/haswell/avx512_1/libsundials_ida.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_idas.so.4
-/usr/lib64/haswell/avx512_1/libsundials_idas.so.4.8.0
-/usr/lib64/haswell/avx512_1/libsundials_kinsol.so.5
-/usr/lib64/haswell/avx512_1/libsundials_kinsol.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecmanyvector.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecopenmp.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecpthreads.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.5
-/usr/lib64/haswell/avx512_1/libsundials_nvecserial.so.5.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolband.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsoldense.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolpcg.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspbcgs.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspfgmr.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolspgmr.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunlinsolsptfqmr.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixband.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixdense.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.3
-/usr/lib64/haswell/avx512_1/libsundials_sunmatrixsparse.so.3.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolfixedpoint.so.2.8.0
-/usr/lib64/haswell/avx512_1/libsundials_sunnonlinsolnewton.so.2.8.0
-/usr/lib64/haswell/libsundials_arkode.so.4
-/usr/lib64/haswell/libsundials_arkode.so.4.8.0
-/usr/lib64/haswell/libsundials_cvode.so.5
-/usr/lib64/haswell/libsundials_cvode.so.5.8.0
-/usr/lib64/haswell/libsundials_cvodes.so.5
-/usr/lib64/haswell/libsundials_cvodes.so.5.8.0
-/usr/lib64/haswell/libsundials_generic.so.5
-/usr/lib64/haswell/libsundials_generic.so.5.8.0
-/usr/lib64/haswell/libsundials_ida.so.5
-/usr/lib64/haswell/libsundials_ida.so.5.8.0
-/usr/lib64/haswell/libsundials_idas.so.4
-/usr/lib64/haswell/libsundials_idas.so.4.8.0
-/usr/lib64/haswell/libsundials_kinsol.so.5
-/usr/lib64/haswell/libsundials_kinsol.so.5.8.0
-/usr/lib64/haswell/libsundials_nvecmanyvector.so.5
-/usr/lib64/haswell/libsundials_nvecmanyvector.so.5.8.0
-/usr/lib64/haswell/libsundials_nvecopenmp.so.5
-/usr/lib64/haswell/libsundials_nvecopenmp.so.5.8.0
-/usr/lib64/haswell/libsundials_nvecpthreads.so.5
-/usr/lib64/haswell/libsundials_nvecpthreads.so.5.8.0
-/usr/lib64/haswell/libsundials_nvecserial.so.5
-/usr/lib64/haswell/libsundials_nvecserial.so.5.8.0
-/usr/lib64/haswell/libsundials_sunlinsolband.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsoldense.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsolpcg.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsolspbcgs.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsolspfgmr.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsolspgmr.so.3.8.0
-/usr/lib64/haswell/libsundials_sunlinsolsptfqmr.so.3.8.0
-/usr/lib64/haswell/libsundials_sunmatrixband.so.3
-/usr/lib64/haswell/libsundials_sunmatrixband.so.3.8.0
-/usr/lib64/haswell/libsundials_sunmatrixdense.so.3
-/usr/lib64/haswell/libsundials_sunmatrixdense.so.3.8.0
-/usr/lib64/haswell/libsundials_sunmatrixsparse.so.3
-/usr/lib64/haswell/libsundials_sunmatrixsparse.so.3.8.0
-/usr/lib64/haswell/libsundials_sunnonlinsolfixedpoint.so.2.8.0
-/usr/lib64/haswell/libsundials_sunnonlinsolnewton.so.2.8.0
 /usr/lib64/libsundials_arkode.so.4
 /usr/lib64/libsundials_arkode.so.4.8.0
 /usr/lib64/libsundials_cvode.so.5
@@ -872,6 +768,7 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/lib64/libsundials_sunmatrixsparse.so.3.8.0
 /usr/lib64/libsundials_sunnonlinsolfixedpoint.so.2.8.0
 /usr/lib64/libsundials_sunnonlinsolnewton.so.2.8.0
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
