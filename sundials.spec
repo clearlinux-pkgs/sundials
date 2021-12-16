@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 5.8.0
-Release  : 40
-URL      : https://github.com/LLNL/sundials/archive/v5.8.0/sundials-5.8.0.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v5.8.0/sundials-5.8.0.tar.gz
+Version  : 6.0.0
+Release  : 41
+URL      : https://github.com/LLNL/sundials/archive/v6.0.0/sundials-6.0.0.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v6.0.0/sundials-6.0.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -88,15 +88,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-5.8.0
-cd %{_builddir}/sundials-5.8.0
+%setup -q -n sundials-6.0.0
+cd %{_builddir}/sundials-6.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633813052
+export SOURCE_DATE_EPOCH=1639686450
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -131,14 +131,14 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export CFLAGS="$CFLAGS -march=x86-64-v3 -m64"
-export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64"
-export FFLAGS="$FFLAGS -march=x86-64-v3 -m64"
-export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64"
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
 -DBUILD_TESTING=ON \
@@ -163,13 +163,13 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
-export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 "
-export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 "
-export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mno-vzeroupper -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
+export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
 export FCFLAGS="$FCFLAGS -march=x86-64-v4 -m64 "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
@@ -210,29 +210,29 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1633813052
+export SOURCE_DATE_EPOCH=1639686450
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
-cp %{_builddir}/sundials-5.8.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
-cp %{_builddir}/sundials-5.8.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
+cp %{_builddir}/sundials-6.0.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/acc2df45ed3189e9c29543b93af0c99320daab44
 pushd clr-build-avx2
 %make_install_v3  || :
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 pushd clr-build-avx512
 %make_install_v4  || :
-/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 pushd clr-build
 %make_install
 popd
 ## Remove excluded files
-rm -f %{buildroot}/usr/LICENSE
+rm -f %{buildroot}*/usr/LICENSE
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -278,6 +278,8 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/README
 /usr/share/sundials/examples/arkode/C_serial/ark_KrylovDemo_prec.c
 /usr/share/sundials/examples/arkode/C_serial/ark_KrylovDemo_prec.out
+/usr/share/sundials/examples/arkode/C_serial/ark_KrylovDemo_prec_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_KrylovDemo_prec_2.out
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic.c
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic.out
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic_mels.c
@@ -288,6 +290,14 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator.out
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D.c
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri.c
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_0_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_2_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_3_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_4_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_5_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_6_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D_imexmri_7_0.001.out
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_1D_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_1D_mri.out
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_fp.c
@@ -300,6 +310,16 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/ark_heat1D_adapt.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_0_0.002.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_1_0.002.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_2_0.005.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_3_0.01.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_4_0.002.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_5_0.002.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_6_0.005.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_7_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_8_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_9_0.001.out
 /usr/share/sundials/examples/arkode/C_serial/ark_onewaycouple_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_onewaycouple_mri.out
 /usr/share/sundials/examples/arkode/C_serial/ark_reaction_diffusion_mri.c
@@ -669,12 +689,10 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/include/sundials/NOTICE
 /usr/include/sundials/sundials_band.h
 /usr/include/sundials/sundials_config.h
+/usr/include/sundials/sundials_context.h
 /usr/include/sundials/sundials_dense.h
 /usr/include/sundials/sundials_direct.h
 /usr/include/sundials/sundials_export.h
-/usr/include/sundials/sundials_fconfig.h
-/usr/include/sundials/sundials_fnvector.h
-/usr/include/sundials/sundials_futils.h
 /usr/include/sundials/sundials_iterative.h
 /usr/include/sundials/sundials_linearsolver.h
 /usr/include/sundials/sundials_math.h
@@ -683,6 +701,7 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/include/sundials/sundials_mpi_types.h
 /usr/include/sundials/sundials_nonlinearsolver.h
 /usr/include/sundials/sundials_nvector.h
+/usr/include/sundials/sundials_profiler.h
 /usr/include/sundials/sundials_types.h
 /usr/include/sundials/sundials_version.h
 /usr/include/sunlinsol/sunlinsol_band.h
@@ -695,6 +714,7 @@ rm -f %{buildroot}/usr/LICENSE
 /usr/include/sunmatrix/sunmatrix_band.h
 /usr/include/sunmatrix/sunmatrix_dense.h
 /usr/include/sunmatrix/sunmatrix_sparse.h
+/usr/include/sunmemory/sunmemory_system.h
 /usr/include/sunnonlinsol/sunnonlinsol_fixedpoint.h
 /usr/include/sunnonlinsol/sunnonlinsol_newton.h
 /usr/lib64/cmake/sundials/SUNDIALSConfig.cmake
@@ -731,43 +751,43 @@ rm -f %{buildroot}/usr/LICENSE
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libsundials_arkode.so.4
-/usr/lib64/libsundials_arkode.so.4.8.0
-/usr/lib64/libsundials_cvode.so.5
-/usr/lib64/libsundials_cvode.so.5.8.0
-/usr/lib64/libsundials_cvodes.so.5
-/usr/lib64/libsundials_cvodes.so.5.8.0
-/usr/lib64/libsundials_generic.so.5
-/usr/lib64/libsundials_generic.so.5.8.0
-/usr/lib64/libsundials_ida.so.5
-/usr/lib64/libsundials_ida.so.5.8.0
-/usr/lib64/libsundials_idas.so.4
-/usr/lib64/libsundials_idas.so.4.8.0
-/usr/lib64/libsundials_kinsol.so.5
-/usr/lib64/libsundials_kinsol.so.5.8.0
-/usr/lib64/libsundials_nvecmanyvector.so.5
-/usr/lib64/libsundials_nvecmanyvector.so.5.8.0
-/usr/lib64/libsundials_nvecopenmp.so.5
-/usr/lib64/libsundials_nvecopenmp.so.5.8.0
-/usr/lib64/libsundials_nvecpthreads.so.5
-/usr/lib64/libsundials_nvecpthreads.so.5.8.0
-/usr/lib64/libsundials_nvecserial.so.5
-/usr/lib64/libsundials_nvecserial.so.5.8.0
-/usr/lib64/libsundials_sunlinsolband.so.3.8.0
-/usr/lib64/libsundials_sunlinsoldense.so.3.8.0
-/usr/lib64/libsundials_sunlinsolpcg.so.3.8.0
-/usr/lib64/libsundials_sunlinsolspbcgs.so.3.8.0
-/usr/lib64/libsundials_sunlinsolspfgmr.so.3.8.0
-/usr/lib64/libsundials_sunlinsolspgmr.so.3.8.0
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.3.8.0
-/usr/lib64/libsundials_sunmatrixband.so.3
-/usr/lib64/libsundials_sunmatrixband.so.3.8.0
-/usr/lib64/libsundials_sunmatrixdense.so.3
-/usr/lib64/libsundials_sunmatrixdense.so.3.8.0
-/usr/lib64/libsundials_sunmatrixsparse.so.3
-/usr/lib64/libsundials_sunmatrixsparse.so.3.8.0
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.2.8.0
-/usr/lib64/libsundials_sunnonlinsolnewton.so.2.8.0
+/usr/lib64/libsundials_arkode.so.5
+/usr/lib64/libsundials_arkode.so.5.0.0
+/usr/lib64/libsundials_cvode.so.6
+/usr/lib64/libsundials_cvode.so.6.0.0
+/usr/lib64/libsundials_cvodes.so.6
+/usr/lib64/libsundials_cvodes.so.6.0.0
+/usr/lib64/libsundials_generic.so.6
+/usr/lib64/libsundials_generic.so.6.0.0
+/usr/lib64/libsundials_ida.so.6
+/usr/lib64/libsundials_ida.so.6.0.0
+/usr/lib64/libsundials_idas.so.5
+/usr/lib64/libsundials_idas.so.5.0.0
+/usr/lib64/libsundials_kinsol.so.6
+/usr/lib64/libsundials_kinsol.so.6.0.0
+/usr/lib64/libsundials_nvecmanyvector.so.6
+/usr/lib64/libsundials_nvecmanyvector.so.6.0.0
+/usr/lib64/libsundials_nvecopenmp.so.6
+/usr/lib64/libsundials_nvecopenmp.so.6.0.0
+/usr/lib64/libsundials_nvecpthreads.so.6
+/usr/lib64/libsundials_nvecpthreads.so.6.0.0
+/usr/lib64/libsundials_nvecserial.so.6
+/usr/lib64/libsundials_nvecserial.so.6.0.0
+/usr/lib64/libsundials_sunlinsolband.so.4.0.0
+/usr/lib64/libsundials_sunlinsoldense.so.4.0.0
+/usr/lib64/libsundials_sunlinsolpcg.so.4.0.0
+/usr/lib64/libsundials_sunlinsolspbcgs.so.4.0.0
+/usr/lib64/libsundials_sunlinsolspfgmr.so.4.0.0
+/usr/lib64/libsundials_sunlinsolspgmr.so.4.0.0
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.0.0
+/usr/lib64/libsundials_sunmatrixband.so.4
+/usr/lib64/libsundials_sunmatrixband.so.4.0.0
+/usr/lib64/libsundials_sunmatrixdense.so.4
+/usr/lib64/libsundials_sunmatrixdense.so.4.0.0
+/usr/lib64/libsundials_sunmatrixsparse.so.4
+/usr/lib64/libsundials_sunmatrixsparse.so.4.0.0
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.0.0
+/usr/lib64/libsundials_sunnonlinsolnewton.so.3.0.0
 /usr/share/clear/optimized-elf/lib*
 
 %files license
