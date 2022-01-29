@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : sundials
 Version  : 6.1.0
-Release  : 42
+Release  : 43
 URL      : https://github.com/LLNL/sundials/archive/v6.1.0/sundials-6.1.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v6.1.0/sundials-6.1.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
