@@ -4,16 +4,17 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 6.1.0
-Release  : 44
-URL      : https://github.com/LLNL/sundials/archive/v6.1.0/sundials-6.1.0.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v6.1.0/sundials-6.1.0.tar.gz
+Version  : 6.1.1
+Release  : 45
+URL      : https://github.com/LLNL/sundials/archive/v6.1.1/sundials-6.1.1.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v6.1.1/sundials-6.1.1.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: sundials-data = %{version}-%{release}
 Requires: sundials-filemap = %{version}-%{release}
 Requires: sundials-lib = %{version}-%{release}
+Requires: sundials-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : cmake
 BuildRequires : git
@@ -62,10 +63,19 @@ filemap components for the sundials package.
 Summary: lib components for the sundials package.
 Group: Libraries
 Requires: sundials-data = %{version}-%{release}
+Requires: sundials-license = %{version}-%{release}
 Requires: sundials-filemap = %{version}-%{release}
 
 %description lib
 lib components for the sundials package.
+
+
+%package license
+Summary: license components for the sundials package.
+Group: Default
+
+%description license
+license components for the sundials package.
 
 
 %package staticdev
@@ -78,15 +88,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-6.1.0
-cd %{_builddir}/sundials-6.1.0
+%setup -q -n sundials-6.1.1
+cd %{_builddir}/sundials-6.1.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642035680
+export SOURCE_DATE_EPOCH=1644619058
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -200,8 +210,17 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642035680
+export SOURCE_DATE_EPOCH=1644619058
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/sundials
+cp %{_builddir}/sundials-6.1.1/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/doc/shared/LicenseReleaseNumbers.rst %{buildroot}/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150
+cp %{_builddir}/sundials-6.1.1/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.1.1/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
 pushd clr-build-avx2
 %make_install_v3  || :
 popd
@@ -520,25 +539,21 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/kinsol/serial/kinRoboKin_dns.out
 /usr/share/sundials/examples/nvector/C_openmp/CMakeLists.txt
 /usr/share/sundials/examples/nvector/C_openmp/Makefile
-/usr/share/sundials/examples/nvector/C_openmp/sundials_nvector.c
 /usr/share/sundials/examples/nvector/C_openmp/test_nvector.c
 /usr/share/sundials/examples/nvector/C_openmp/test_nvector.h
 /usr/share/sundials/examples/nvector/C_openmp/test_nvector_openmp.c
 /usr/share/sundials/examples/nvector/manyvector/CMakeLists.txt
 /usr/share/sundials/examples/nvector/manyvector/Makefile
-/usr/share/sundials/examples/nvector/manyvector/sundials_nvector.c
 /usr/share/sundials/examples/nvector/manyvector/test_nvector.c
 /usr/share/sundials/examples/nvector/manyvector/test_nvector.h
 /usr/share/sundials/examples/nvector/manyvector/test_nvector_manyvector.c
 /usr/share/sundials/examples/nvector/pthreads/CMakeLists.txt
 /usr/share/sundials/examples/nvector/pthreads/Makefile
-/usr/share/sundials/examples/nvector/pthreads/sundials_nvector.c
 /usr/share/sundials/examples/nvector/pthreads/test_nvector.c
 /usr/share/sundials/examples/nvector/pthreads/test_nvector.h
 /usr/share/sundials/examples/nvector/pthreads/test_nvector_pthreads.c
 /usr/share/sundials/examples/nvector/serial/CMakeLists.txt
 /usr/share/sundials/examples/nvector/serial/Makefile
-/usr/share/sundials/examples/nvector/serial/sundials_nvector.c
 /usr/share/sundials/examples/nvector/serial/test_nvector.c
 /usr/share/sundials/examples/nvector/serial/test_nvector.h
 /usr/share/sundials/examples/nvector/serial/test_nvector_serial.c
@@ -734,43 +749,48 @@ rm -f %{buildroot}*/usr/LICENSE
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libsundials_arkode.so.5
-/usr/lib64/libsundials_arkode.so.5.1.0
+/usr/lib64/libsundials_arkode.so.5.1.1
 /usr/lib64/libsundials_cvode.so.6
-/usr/lib64/libsundials_cvode.so.6.1.0
+/usr/lib64/libsundials_cvode.so.6.1.1
 /usr/lib64/libsundials_cvodes.so.6
-/usr/lib64/libsundials_cvodes.so.6.1.0
+/usr/lib64/libsundials_cvodes.so.6.1.1
 /usr/lib64/libsundials_generic.so.6
-/usr/lib64/libsundials_generic.so.6.1.0
+/usr/lib64/libsundials_generic.so.6.1.1
 /usr/lib64/libsundials_ida.so.6
-/usr/lib64/libsundials_ida.so.6.1.0
+/usr/lib64/libsundials_ida.so.6.1.1
 /usr/lib64/libsundials_idas.so.5
-/usr/lib64/libsundials_idas.so.5.1.0
+/usr/lib64/libsundials_idas.so.5.1.1
 /usr/lib64/libsundials_kinsol.so.6
-/usr/lib64/libsundials_kinsol.so.6.1.0
+/usr/lib64/libsundials_kinsol.so.6.1.1
 /usr/lib64/libsundials_nvecmanyvector.so.6
-/usr/lib64/libsundials_nvecmanyvector.so.6.1.0
+/usr/lib64/libsundials_nvecmanyvector.so.6.1.1
 /usr/lib64/libsundials_nvecopenmp.so.6
-/usr/lib64/libsundials_nvecopenmp.so.6.1.0
+/usr/lib64/libsundials_nvecopenmp.so.6.1.1
 /usr/lib64/libsundials_nvecpthreads.so.6
-/usr/lib64/libsundials_nvecpthreads.so.6.1.0
+/usr/lib64/libsundials_nvecpthreads.so.6.1.1
 /usr/lib64/libsundials_nvecserial.so.6
-/usr/lib64/libsundials_nvecserial.so.6.1.0
-/usr/lib64/libsundials_sunlinsolband.so.4.1.0
-/usr/lib64/libsundials_sunlinsoldense.so.4.1.0
-/usr/lib64/libsundials_sunlinsolpcg.so.4.1.0
-/usr/lib64/libsundials_sunlinsolspbcgs.so.4.1.0
-/usr/lib64/libsundials_sunlinsolspfgmr.so.4.1.0
-/usr/lib64/libsundials_sunlinsolspgmr.so.4.1.0
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.1.0
+/usr/lib64/libsundials_nvecserial.so.6.1.1
+/usr/lib64/libsundials_sunlinsolband.so.4.1.1
+/usr/lib64/libsundials_sunlinsoldense.so.4.1.1
+/usr/lib64/libsundials_sunlinsolpcg.so.4.1.1
+/usr/lib64/libsundials_sunlinsolspbcgs.so.4.1.1
+/usr/lib64/libsundials_sunlinsolspfgmr.so.4.1.1
+/usr/lib64/libsundials_sunlinsolspgmr.so.4.1.1
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.1.1
 /usr/lib64/libsundials_sunmatrixband.so.4
-/usr/lib64/libsundials_sunmatrixband.so.4.1.0
+/usr/lib64/libsundials_sunmatrixband.so.4.1.1
 /usr/lib64/libsundials_sunmatrixdense.so.4
-/usr/lib64/libsundials_sunmatrixdense.so.4.1.0
+/usr/lib64/libsundials_sunmatrixdense.so.4.1.1
 /usr/lib64/libsundials_sunmatrixsparse.so.4
-/usr/lib64/libsundials_sunmatrixsparse.so.4.1.0
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.1.0
-/usr/lib64/libsundials_sunnonlinsolnewton.so.3.1.0
+/usr/lib64/libsundials_sunmatrixsparse.so.4.1.1
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.1.1
+/usr/lib64/libsundials_sunnonlinsolnewton.so.3.1.1
 /usr/share/clear/optimized-elf/lib*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150
 
 %files staticdev
 %defattr(-,root,root,-)
