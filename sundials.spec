@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 6.1.1
-Release  : 45
-URL      : https://github.com/LLNL/sundials/archive/v6.1.1/sundials-6.1.1.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v6.1.1/sundials-6.1.1.tar.gz
+Version  : 6.2.0
+Release  : 46
+URL      : https://github.com/LLNL/sundials/archive/v6.2.0/sundials-6.2.0.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v6.2.0/sundials-6.2.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -88,15 +88,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-6.1.1
-cd %{_builddir}/sundials-6.1.1
+%setup -q -n sundials-6.2.0
+cd %{_builddir}/sundials-6.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1644619058
+export SOURCE_DATE_EPOCH=1650739872
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -210,17 +210,17 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1644619058
+export SOURCE_DATE_EPOCH=1650739872
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
-cp %{_builddir}/sundials-6.1.1/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/doc/shared/LicenseReleaseNumbers.rst %{buildroot}/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150
-cp %{_builddir}/sundials-6.1.1/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-6.1.1/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/doc/shared/LicenseReleaseNumbers.rst %{buildroot}/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150
+cp %{_builddir}/sundials-6.2.0/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-6.2.0/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
 pushd clr-build-avx2
 %make_install_v3  || :
 popd
@@ -243,6 +243,9 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/CXX_serial/CMakeLists.txt
 /usr/share/sundials/examples/arkode/CXX_serial/Makefile
 /usr/share/sundials/examples/arkode/CXX_serial/README
+/usr/share/sundials/examples/arkode/CXX_serial/ark_advection_diffusion_reaction.cpp
+/usr/share/sundials/examples/arkode/CXX_serial/ark_advection_diffusion_reaction.hpp
+/usr/share/sundials/examples/arkode/CXX_serial/ark_advection_diffusion_reaction.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_analytic_sys.cpp
 /usr/share/sundials/examples/arkode/CXX_serial/ark_analytic_sys.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_heat2D.cpp
@@ -250,6 +253,8 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt.cpp
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_-4.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_3_0_-10_0.out
+/usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_4_0_-10_0_10_1.out
+/usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_4_0_-10_1_10_1.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_4_1.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_0_5.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_1_-3_0_-10_0.out
@@ -287,6 +292,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic_mels.out
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic_nonlin.c
 /usr/share/sundials/examples/arkode/C_serial/ark_analytic_nonlin.out
+/usr/share/sundials/examples/arkode/C_serial/ark_analytic_nonlin_stats.csv
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator.c
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator.out
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator1D.c
@@ -319,18 +325,24 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_5_0.002.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_6_0.005.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_7_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_7_0.001_-100_100_0.5_1.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_8_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_8_0.001_-100_100_0.5_1.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_9_0.001.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_9_0.001_-100_100_0.5_1.out
 /usr/share/sundials/examples/arkode/C_serial/ark_onewaycouple_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_onewaycouple_mri.out
 /usr/share/sundials/examples/arkode/C_serial/ark_reaction_diffusion_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_reaction_diffusion_mri.out
+/usr/share/sundials/examples/arkode/C_serial/ark_reaction_diffusion_mri_fast_stats.csv
+/usr/share/sundials/examples/arkode/C_serial/ark_reaction_diffusion_mri_slow_stats.csv
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson.c
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson.out
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson_constraints.c
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson_constraints.out
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson_root.c
 /usr/share/sundials/examples/arkode/C_serial/ark_robertson_root.out
+/usr/share/sundials/examples/arkode/C_serial/ark_robertson_stats.csv
 /usr/share/sundials/examples/arkode/C_serial/ark_twowaycouple_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_twowaycouple_mri.out
 /usr/share/sundials/examples/arkode/C_serial/plot_brusselator1D.py
@@ -384,6 +396,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/cvode/serial/cvRoberts_dns_constraints.out
 /usr/share/sundials/examples/cvode/serial/cvRoberts_dns_negsol.c
 /usr/share/sundials/examples/cvode/serial/cvRoberts_dns_negsol.out
+/usr/share/sundials/examples/cvode/serial/cvRoberts_dns_stats.csv
 /usr/share/sundials/examples/cvode/serial/cvRoberts_dns_uw.c
 /usr/share/sundials/examples/cvode/serial/cvRoberts_dns_uw.out
 /usr/share/sundials/examples/cvode/serial/plot_cvParticle.py
@@ -423,14 +436,22 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/cvodes/serial/cvsHessian_ASA_FSA.out
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_ls.c
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_ls.out
+/usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_ls_0_1.out
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_ls_1.out
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_ls_2.out
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_prec.c
 /usr/share/sundials/examples/cvodes/serial/cvsKrylovDemo_prec.out
+/usr/share/sundials/examples/cvodes/serial/cvsParticle_dns.c
+/usr/share/sundials/examples/cvodes/serial/cvsParticle_dns.out
+/usr/share/sundials/examples/cvodes/serial/cvsPendulum_dns.c
+/usr/share/sundials/examples/cvodes/serial/cvsPendulum_dns.out
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns.out
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns_bkw1_stats.csv
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns_bkw2_stats.csv
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns_constraints.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns_constraints.out
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_ASAi_dns_fwd_stats.csv
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_-sensi_sim_t.out
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_-sensi_stg1_t.out
@@ -438,13 +459,18 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_Switch.out
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_constraints.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_constraints_-sensi_stg1_t.out
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_stats_-sensi_sim_t.csv
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_FSA_dns_stats_-sensi_stg1_t.csv
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns.out
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dnsL.out
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns_constraints.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns_constraints.out
+/usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns_stats.csv
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns_uw.c
 /usr/share/sundials/examples/cvodes/serial/cvsRoberts_dns_uw.out
+/usr/share/sundials/examples/cvodes/serial/plot_cvsParticle.py
+/usr/share/sundials/examples/cvodes/serial/plot_cvsPendulum.py
 /usr/share/sundials/examples/ida/C_openmp/CMakeLists.txt
 /usr/share/sundials/examples/ida/C_openmp/Makefile
 /usr/share/sundials/examples/ida/C_openmp/README
@@ -471,6 +497,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/ida/serial/idaKrylovDemo_ls_2.out
 /usr/share/sundials/examples/ida/serial/idaRoberts_dns.c
 /usr/share/sundials/examples/ida/serial/idaRoberts_dns.out
+/usr/share/sundials/examples/ida/serial/idaRoberts_dns_stats.csv
 /usr/share/sundials/examples/ida/serial/idaSlCrank_dns.c
 /usr/share/sundials/examples/ida/serial/idaSlCrank_dns.out
 /usr/share/sundials/examples/idas/C_openmp/CMakeLists.txt
@@ -503,10 +530,14 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/idas/serial/idasKrylovDemo_ls_2.out
 /usr/share/sundials/examples/idas/serial/idasRoberts_ASAi_dns.c
 /usr/share/sundials/examples/idas/serial/idasRoberts_ASAi_dns.out
+/usr/share/sundials/examples/idas/serial/idasRoberts_ASAi_dns_bkw1_stats.csv
+/usr/share/sundials/examples/idas/serial/idasRoberts_ASAi_dns_fwd_stats.csv
 /usr/share/sundials/examples/idas/serial/idasRoberts_FSA_dns.c
 /usr/share/sundials/examples/idas/serial/idasRoberts_FSA_dns_-sensi_stg_t.out
+/usr/share/sundials/examples/idas/serial/idasRoberts_FSA_dns_stats_-sensi_stg_t.csv
 /usr/share/sundials/examples/idas/serial/idasRoberts_dns.c
 /usr/share/sundials/examples/idas/serial/idasRoberts_dns.out
+/usr/share/sundials/examples/idas/serial/idasRoberts_dns_stats.csv
 /usr/share/sundials/examples/idas/serial/idasSlCrank_FSA_dns.c
 /usr/share/sundials/examples/idas/serial/idasSlCrank_FSA_dns.out
 /usr/share/sundials/examples/idas/serial/idasSlCrank_dns.c
@@ -537,6 +568,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/kinsol/serial/kinRoberts_fp.out
 /usr/share/sundials/examples/kinsol/serial/kinRoboKin_dns.c
 /usr/share/sundials/examples/kinsol/serial/kinRoboKin_dns.out
+/usr/share/sundials/examples/kinsol/serial/kinRoboKin_dns_stats.csv
 /usr/share/sundials/examples/nvector/C_openmp/CMakeLists.txt
 /usr/share/sundials/examples/nvector/C_openmp/Makefile
 /usr/share/sundials/examples/nvector/C_openmp/test_nvector.c
@@ -662,6 +694,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/include/cvodes/cvodes_diag.h
 /usr/include/cvodes/cvodes_direct.h
 /usr/include/cvodes/cvodes_ls.h
+/usr/include/cvodes/cvodes_proj.h
 /usr/include/cvodes/cvodes_spils.h
 /usr/include/ida/ida.h
 /usr/include/ida/ida_bbdpre.h
@@ -692,6 +725,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/include/sundials/sundials_export.h
 /usr/include/sundials/sundials_iterative.h
 /usr/include/sundials/sundials_linearsolver.h
+/usr/include/sundials/sundials_logger.h
 /usr/include/sundials/sundials_math.h
 /usr/include/sundials/sundials_matrix.h
 /usr/include/sundials/sundials_memory.h
@@ -749,42 +783,42 @@ rm -f %{buildroot}*/usr/LICENSE
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libsundials_arkode.so.5
-/usr/lib64/libsundials_arkode.so.5.1.1
+/usr/lib64/libsundials_arkode.so.5.2.0
 /usr/lib64/libsundials_cvode.so.6
-/usr/lib64/libsundials_cvode.so.6.1.1
+/usr/lib64/libsundials_cvode.so.6.2.0
 /usr/lib64/libsundials_cvodes.so.6
-/usr/lib64/libsundials_cvodes.so.6.1.1
+/usr/lib64/libsundials_cvodes.so.6.2.0
 /usr/lib64/libsundials_generic.so.6
-/usr/lib64/libsundials_generic.so.6.1.1
+/usr/lib64/libsundials_generic.so.6.2.0
 /usr/lib64/libsundials_ida.so.6
-/usr/lib64/libsundials_ida.so.6.1.1
+/usr/lib64/libsundials_ida.so.6.2.0
 /usr/lib64/libsundials_idas.so.5
-/usr/lib64/libsundials_idas.so.5.1.1
+/usr/lib64/libsundials_idas.so.5.2.0
 /usr/lib64/libsundials_kinsol.so.6
-/usr/lib64/libsundials_kinsol.so.6.1.1
+/usr/lib64/libsundials_kinsol.so.6.2.0
 /usr/lib64/libsundials_nvecmanyvector.so.6
-/usr/lib64/libsundials_nvecmanyvector.so.6.1.1
+/usr/lib64/libsundials_nvecmanyvector.so.6.2.0
 /usr/lib64/libsundials_nvecopenmp.so.6
-/usr/lib64/libsundials_nvecopenmp.so.6.1.1
+/usr/lib64/libsundials_nvecopenmp.so.6.2.0
 /usr/lib64/libsundials_nvecpthreads.so.6
-/usr/lib64/libsundials_nvecpthreads.so.6.1.1
+/usr/lib64/libsundials_nvecpthreads.so.6.2.0
 /usr/lib64/libsundials_nvecserial.so.6
-/usr/lib64/libsundials_nvecserial.so.6.1.1
-/usr/lib64/libsundials_sunlinsolband.so.4.1.1
-/usr/lib64/libsundials_sunlinsoldense.so.4.1.1
-/usr/lib64/libsundials_sunlinsolpcg.so.4.1.1
-/usr/lib64/libsundials_sunlinsolspbcgs.so.4.1.1
-/usr/lib64/libsundials_sunlinsolspfgmr.so.4.1.1
-/usr/lib64/libsundials_sunlinsolspgmr.so.4.1.1
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.1.1
+/usr/lib64/libsundials_nvecserial.so.6.2.0
+/usr/lib64/libsundials_sunlinsolband.so.4.2.0
+/usr/lib64/libsundials_sunlinsoldense.so.4.2.0
+/usr/lib64/libsundials_sunlinsolpcg.so.4.2.0
+/usr/lib64/libsundials_sunlinsolspbcgs.so.4.2.0
+/usr/lib64/libsundials_sunlinsolspfgmr.so.4.2.0
+/usr/lib64/libsundials_sunlinsolspgmr.so.4.2.0
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.2.0
 /usr/lib64/libsundials_sunmatrixband.so.4
-/usr/lib64/libsundials_sunmatrixband.so.4.1.1
+/usr/lib64/libsundials_sunmatrixband.so.4.2.0
 /usr/lib64/libsundials_sunmatrixdense.so.4
-/usr/lib64/libsundials_sunmatrixdense.so.4.1.1
+/usr/lib64/libsundials_sunmatrixdense.so.4.2.0
 /usr/lib64/libsundials_sunmatrixsparse.so.4
-/usr/lib64/libsundials_sunmatrixsparse.so.4.1.1
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.1.1
-/usr/lib64/libsundials_sunnonlinsolnewton.so.3.1.1
+/usr/lib64/libsundials_sunmatrixsparse.so.4.2.0
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.2.0
+/usr/lib64/libsundials_sunnonlinsolnewton.so.3.2.0
 /usr/share/clear/optimized-elf/lib*
 
 %files license
