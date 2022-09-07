@@ -3,11 +3,11 @@ make test
 popd
 pushd clr-build-avx2
 if grep -q 'avx2[^ ]*' /proc/cpuinfo ; then
-    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell make test
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/glibc-hwcaps/x86-64-v3 make test
 fi
 popd
 pushd clr-build-avx512
 if grep -q 'avx512[^ ]*' /proc/cpuinfo ; then
-    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell/avx512_1 make test
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/glibc-hwcaps/x86-64-v4 make test
 fi
 popd

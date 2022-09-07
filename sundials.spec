@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : sundials
 Version  : 6.3.0
-Release  : 51
+Release  : 52
 URL      : https://github.com/LLNL/sundials/archive/v6.3.0/sundials-6.3.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v6.3.0/sundials-6.3.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1660169576
+export SOURCE_DATE_EPOCH=1662584824
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -121,10 +121,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
@@ -153,10 +153,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -msse2avx -mtune=skylake "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
 export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
 export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
@@ -190,17 +190,17 @@ make test
 popd
 pushd clr-build-avx2
 if grep -q 'avx2[^ ]*' /proc/cpuinfo ; then
-    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell make test
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/glibc-hwcaps/x86-64-v3 make test
 fi
 popd
 pushd clr-build-avx512
 if grep -q 'avx512[^ ]*' /proc/cpuinfo ; then
-    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/haswell/avx512_1 make test
+    LD_LIBRARY_PATH=%{buildroot}/usr/lib64/glibc-hwcaps/x86-64-v4 make test
 fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1660169576
+export SOURCE_DATE_EPOCH=1662584824
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
@@ -935,6 +935,52 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files staticdev
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_arkode.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvode.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvodes.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_generic.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_ida.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_idas.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_kinsol.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecmanyvector.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecopenmp.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecpthreads.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecserial.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolband.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsoldense.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolpcg.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspbcgs.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspfgmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspgmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolsptfqmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixband.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixdense.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixsparse.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolfixedpoint.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolnewton.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_arkode.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvode.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvodes.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_generic.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_ida.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_idas.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_kinsol.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecmanyvector.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecopenmp.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecpthreads.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecserial.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolband.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsoldense.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolpcg.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspbcgs.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspfgmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspgmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolsptfqmr.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixband.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixdense.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixsparse.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolfixedpoint.a
+/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolnewton.a
 /usr/lib64/libsundials_arkode.a
 /usr/lib64/libsundials_cvode.a
 /usr/lib64/libsundials_cvodes.a
