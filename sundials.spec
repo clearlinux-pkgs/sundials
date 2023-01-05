@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : sundials
 Version  : 6.3.0
-Release  : 53
+Release  : 54
 URL      : https://github.com/LLNL/sundials/archive/v6.3.0/sundials-6.3.0.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v6.3.0/sundials-6.3.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
@@ -21,6 +21,9 @@ BuildRequires : glibc-dev
 BuildRequires : openblas
 BuildRequires : openmpi-dev
 BuildRequires : python3
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 SUNDIALS is a family of software packages implemented with the goal of providing
@@ -86,17 +89,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662584824
+export SOURCE_DATE_EPOCH=1672883404
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
 -DBUILD_TESTING=ON \
@@ -121,10 +124,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
@@ -153,13 +156,13 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
-export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
-export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
-export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
+export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
+export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
 export FCFLAGS="$FCFLAGS -march=x86-64-v4 -m64 "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
@@ -200,17 +203,17 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662584824
+export SOURCE_DATE_EPOCH=1672883404
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
-cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/doc/shared/LicenseReleaseNumbers.rst %{buildroot}/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150
-cp %{_builddir}/sundials-%{version}/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
-cp %{_builddir}/sundials-%{version}/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935
+cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/doc/shared/LicenseReleaseNumbers.rst %{buildroot}/usr/share/package-licenses/sundials/ccc5cf5c923b9f8e289174ad71be29bf701f0150 || :
+cp %{_builddir}/sundials-%{version}/src/arkode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/src/cvode/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/src/cvodes/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/src/ida/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/src/idas/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
+cp %{_builddir}/sundials-%{version}/src/kinsol/LICENSE %{buildroot}/usr/share/package-licenses/sundials/b144e8585d2dcb779a70aca47cd777e7ee6af935 || :
 pushd clr-build-avx2
 %make_install_v3  || :
 popd
