@@ -6,7 +6,7 @@
 %define keepstatic 1
 Name     : sundials
 Version  : 6.5.1
-Release  : 57
+Release  : 58
 URL      : https://github.com/LLNL/sundials/archive/v6.5.1/sundials-6.5.1.tar.gz
 Source0  : https://github.com/LLNL/sundials/archive/v6.5.1/sundials-6.5.1.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
@@ -91,17 +91,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680728696
+export SOURCE_DATE_EPOCH=1683234188
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %cmake .. -DBUILD_SHARED_LIBS=ON \
 -DBUILD_STATIC_LIBS=ON \
 -DBUILD_TESTING=ON \
@@ -126,10 +126,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
@@ -158,10 +158,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
-export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz -march=x86_64-v4 -mprefer-vector-width=512 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86_64-v4 -mprefer-vector-width=512 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86_64-v4 -mprefer-vector-width=512 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86_64-v4 -mprefer-vector-width=512 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v4 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86_64-v4 -mprefer-vector-width=512 "
 export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
 export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 -Wl,-z,x86-64-v4 -mprefer-vector-width=512"
@@ -205,7 +205,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680728696
+export SOURCE_DATE_EPOCH=1683234188
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/11adbd373d31e3f2ef81c49d25cefd8f9d2313b2 || :
@@ -650,6 +650,52 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libsundials_arkode.so
+/V3/usr/lib64/libsundials_cvode.so
+/V3/usr/lib64/libsundials_cvodes.so
+/V3/usr/lib64/libsundials_generic.so
+/V3/usr/lib64/libsundials_ida.so
+/V3/usr/lib64/libsundials_idas.so
+/V3/usr/lib64/libsundials_kinsol.so
+/V3/usr/lib64/libsundials_nvecmanyvector.so
+/V3/usr/lib64/libsundials_nvecopenmp.so
+/V3/usr/lib64/libsundials_nvecpthreads.so
+/V3/usr/lib64/libsundials_nvecserial.so
+/V3/usr/lib64/libsundials_sunlinsolband.so
+/V3/usr/lib64/libsundials_sunlinsoldense.so
+/V3/usr/lib64/libsundials_sunlinsolpcg.so
+/V3/usr/lib64/libsundials_sunlinsolspbcgs.so
+/V3/usr/lib64/libsundials_sunlinsolspfgmr.so
+/V3/usr/lib64/libsundials_sunlinsolspgmr.so
+/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so
+/V3/usr/lib64/libsundials_sunmatrixband.so
+/V3/usr/lib64/libsundials_sunmatrixdense.so
+/V3/usr/lib64/libsundials_sunmatrixsparse.so
+/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so
+/V3/usr/lib64/libsundials_sunnonlinsolnewton.so
+/V4/usr/lib64/libsundials_arkode.so
+/V4/usr/lib64/libsundials_cvode.so
+/V4/usr/lib64/libsundials_cvodes.so
+/V4/usr/lib64/libsundials_generic.so
+/V4/usr/lib64/libsundials_ida.so
+/V4/usr/lib64/libsundials_idas.so
+/V4/usr/lib64/libsundials_kinsol.so
+/V4/usr/lib64/libsundials_nvecmanyvector.so
+/V4/usr/lib64/libsundials_nvecopenmp.so
+/V4/usr/lib64/libsundials_nvecpthreads.so
+/V4/usr/lib64/libsundials_nvecserial.so
+/V4/usr/lib64/libsundials_sunlinsolband.so
+/V4/usr/lib64/libsundials_sunlinsoldense.so
+/V4/usr/lib64/libsundials_sunlinsolpcg.so
+/V4/usr/lib64/libsundials_sunlinsolspbcgs.so
+/V4/usr/lib64/libsundials_sunlinsolspfgmr.so
+/V4/usr/lib64/libsundials_sunlinsolspgmr.so
+/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so
+/V4/usr/lib64/libsundials_sunmatrixband.so
+/V4/usr/lib64/libsundials_sunmatrixdense.so
+/V4/usr/lib64/libsundials_sunmatrixsparse.so
+/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so
+/V4/usr/lib64/libsundials_sunnonlinsolnewton.so
 /usr/include/arkode/arkode.h
 /usr/include/arkode/arkode_arkstep.h
 /usr/include/arkode/arkode_bandpre.h
@@ -739,52 +785,6 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/lib64/cmake/sundials/SUNDIALSConfigVersion.cmake
 /usr/lib64/cmake/sundials/SUNDIALSTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/sundials/SUNDIALSTargets.cmake
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_arkode.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvode.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvodes.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_generic.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_ida.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_idas.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_kinsol.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecmanyvector.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecopenmp.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecpthreads.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecserial.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolband.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsoldense.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolpcg.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspbcgs.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspfgmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspgmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolsptfqmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixband.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixdense.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixsparse.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolfixedpoint.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolnewton.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_arkode.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvode.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvodes.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_generic.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_ida.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_idas.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_kinsol.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecmanyvector.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecopenmp.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecpthreads.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecserial.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolband.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsoldense.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolpcg.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspbcgs.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspfgmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspgmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolsptfqmr.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixband.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixdense.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixsparse.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolfixedpoint.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolnewton.so
 /usr/lib64/libsundials_arkode.so
 /usr/lib64/libsundials_cvode.so
 /usr/lib64/libsundials_cvodes.so
@@ -811,80 +811,80 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_arkode.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_arkode.so.5.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvode.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvode.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvodes.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvodes.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_generic.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_generic.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_ida.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_ida.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_idas.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_idas.so.5.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_kinsol.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_kinsol.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecmanyvector.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecmanyvector.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecopenmp.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecopenmp.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecpthreads.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecpthreads.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecserial.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecserial.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolband.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsoldense.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolpcg.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspbcgs.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspfgmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspgmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolsptfqmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixband.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixband.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixdense.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixdense.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixsparse.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixsparse.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolfixedpoint.so.3.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolnewton.so.3.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_arkode.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_arkode.so.5.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvode.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvode.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvodes.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvodes.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_generic.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_generic.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_ida.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_ida.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_idas.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_idas.so.5.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_kinsol.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_kinsol.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecmanyvector.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecmanyvector.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecopenmp.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecopenmp.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecpthreads.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecpthreads.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecserial.so.6
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecserial.so.6.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolband.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsoldense.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolpcg.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspbcgs.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspfgmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspgmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolsptfqmr.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixband.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixband.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixdense.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixdense.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixsparse.so.4
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixsparse.so.4.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolfixedpoint.so.3.5.1
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolnewton.so.3.5.1
+/V3/usr/lib64/libsundials_arkode.so.5
+/V3/usr/lib64/libsundials_arkode.so.5.5.1
+/V3/usr/lib64/libsundials_cvode.so.6
+/V3/usr/lib64/libsundials_cvode.so.6.5.1
+/V3/usr/lib64/libsundials_cvodes.so.6
+/V3/usr/lib64/libsundials_cvodes.so.6.5.1
+/V3/usr/lib64/libsundials_generic.so.6
+/V3/usr/lib64/libsundials_generic.so.6.5.1
+/V3/usr/lib64/libsundials_ida.so.6
+/V3/usr/lib64/libsundials_ida.so.6.5.1
+/V3/usr/lib64/libsundials_idas.so.5
+/V3/usr/lib64/libsundials_idas.so.5.5.1
+/V3/usr/lib64/libsundials_kinsol.so.6
+/V3/usr/lib64/libsundials_kinsol.so.6.5.1
+/V3/usr/lib64/libsundials_nvecmanyvector.so.6
+/V3/usr/lib64/libsundials_nvecmanyvector.so.6.5.1
+/V3/usr/lib64/libsundials_nvecopenmp.so.6
+/V3/usr/lib64/libsundials_nvecopenmp.so.6.5.1
+/V3/usr/lib64/libsundials_nvecpthreads.so.6
+/V3/usr/lib64/libsundials_nvecpthreads.so.6.5.1
+/V3/usr/lib64/libsundials_nvecserial.so.6
+/V3/usr/lib64/libsundials_nvecserial.so.6.5.1
+/V3/usr/lib64/libsundials_sunlinsolband.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsoldense.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsolpcg.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsolspbcgs.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsolspfgmr.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsolspgmr.so.4.5.1
+/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.5.1
+/V3/usr/lib64/libsundials_sunmatrixband.so.4
+/V3/usr/lib64/libsundials_sunmatrixband.so.4.5.1
+/V3/usr/lib64/libsundials_sunmatrixdense.so.4
+/V3/usr/lib64/libsundials_sunmatrixdense.so.4.5.1
+/V3/usr/lib64/libsundials_sunmatrixsparse.so.4
+/V3/usr/lib64/libsundials_sunmatrixsparse.so.4.5.1
+/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.5.1
+/V3/usr/lib64/libsundials_sunnonlinsolnewton.so.3.5.1
+/V4/usr/lib64/libsundials_arkode.so.5
+/V4/usr/lib64/libsundials_arkode.so.5.5.1
+/V4/usr/lib64/libsundials_cvode.so.6
+/V4/usr/lib64/libsundials_cvode.so.6.5.1
+/V4/usr/lib64/libsundials_cvodes.so.6
+/V4/usr/lib64/libsundials_cvodes.so.6.5.1
+/V4/usr/lib64/libsundials_generic.so.6
+/V4/usr/lib64/libsundials_generic.so.6.5.1
+/V4/usr/lib64/libsundials_ida.so.6
+/V4/usr/lib64/libsundials_ida.so.6.5.1
+/V4/usr/lib64/libsundials_idas.so.5
+/V4/usr/lib64/libsundials_idas.so.5.5.1
+/V4/usr/lib64/libsundials_kinsol.so.6
+/V4/usr/lib64/libsundials_kinsol.so.6.5.1
+/V4/usr/lib64/libsundials_nvecmanyvector.so.6
+/V4/usr/lib64/libsundials_nvecmanyvector.so.6.5.1
+/V4/usr/lib64/libsundials_nvecopenmp.so.6
+/V4/usr/lib64/libsundials_nvecopenmp.so.6.5.1
+/V4/usr/lib64/libsundials_nvecpthreads.so.6
+/V4/usr/lib64/libsundials_nvecpthreads.so.6.5.1
+/V4/usr/lib64/libsundials_nvecserial.so.6
+/V4/usr/lib64/libsundials_nvecserial.so.6.5.1
+/V4/usr/lib64/libsundials_sunlinsolband.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsoldense.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsolpcg.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsolspbcgs.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsolspfgmr.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsolspgmr.so.4.5.1
+/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.5.1
+/V4/usr/lib64/libsundials_sunmatrixband.so.4
+/V4/usr/lib64/libsundials_sunmatrixband.so.4.5.1
+/V4/usr/lib64/libsundials_sunmatrixdense.so.4
+/V4/usr/lib64/libsundials_sunmatrixdense.so.4.5.1
+/V4/usr/lib64/libsundials_sunmatrixsparse.so.4
+/V4/usr/lib64/libsundials_sunmatrixsparse.so.4.5.1
+/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.5.1
+/V4/usr/lib64/libsundials_sunnonlinsolnewton.so.3.5.1
 /usr/lib64/libsundials_arkode.so.5
 /usr/lib64/libsundials_arkode.so.5.5.1
 /usr/lib64/libsundials_cvode.so.6
@@ -930,52 +930,6 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files staticdev
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_arkode.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvode.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_cvodes.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_generic.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_ida.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_idas.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_kinsol.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecmanyvector.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecopenmp.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecpthreads.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_nvecserial.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolband.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsoldense.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolpcg.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspbcgs.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspfgmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolspgmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunlinsolsptfqmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixband.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixdense.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunmatrixsparse.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolfixedpoint.a
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsundials_sunnonlinsolnewton.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_arkode.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvode.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_cvodes.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_generic.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_ida.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_idas.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_kinsol.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecmanyvector.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecopenmp.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecpthreads.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_nvecserial.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolband.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsoldense.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolpcg.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspbcgs.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspfgmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolspgmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunlinsolsptfqmr.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixband.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixdense.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunmatrixsparse.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolfixedpoint.a
-/usr/lib64/glibc-hwcaps/x86-64-v4/libsundials_sunnonlinsolnewton.a
 /usr/lib64/libsundials_arkode.a
 /usr/lib64/libsundials_cvode.a
 /usr/lib64/libsundials_cvodes.a
