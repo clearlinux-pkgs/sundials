@@ -5,10 +5,10 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 6.5.1
-Release  : 59
-URL      : https://github.com/LLNL/sundials/archive/v6.5.1/sundials-6.5.1.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v6.5.1/sundials-6.5.1.tar.gz
+Version  : 6.6.0
+Release  : 60
+URL      : https://github.com/LLNL/sundials/archive/v6.6.0/sundials-6.6.0.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v6.6.0/sundials-6.6.0.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -83,15 +83,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-6.5.1
-cd %{_builddir}/sundials-6.5.1
+%setup -q -n sundials-6.6.0
+cd %{_builddir}/sundials-6.6.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685502551
+export SOURCE_DATE_EPOCH=1689955300
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -205,7 +205,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685502551
+export SOURCE_DATE_EPOCH=1689955300
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/11adbd373d31e3f2ef81c49d25cefd8f9d2313b2 || :
@@ -258,6 +258,9 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_2_-5_0_-10.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_2_4_0_-10_0.out
 /usr/share/sundials/examples/arkode/CXX_serial/ark_kpr_Mt_2_8_0_-10.out
+/usr/share/sundials/examples/arkode/CXX_serial/ark_pendulum.cpp
+/usr/share/sundials/examples/arkode/CXX_serial/ark_pendulum.out
+/usr/share/sundials/examples/arkode/CXX_serial/example_utilities.hpp
 /usr/share/sundials/examples/arkode/CXX_serial/plot_heat2D.py
 /usr/share/sundials/examples/arkode/CXX_serial/plot_sol.py
 /usr/share/sundials/examples/arkode/C_manyvector/CMakeLists.txt
@@ -306,10 +309,40 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_fp.out
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_brusselator_mri.out
+/usr/share/sundials/examples/arkode/C_serial/ark_conserved_exp_entropy_ark.c
+/usr/share/sundials/examples/arkode/C_serial/ark_conserved_exp_entropy_ark_1_0.out
+/usr/share/sundials/examples/arkode/C_serial/ark_conserved_exp_entropy_ark_1_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_conserved_exp_entropy_erk.c
+/usr/share/sundials/examples/arkode/C_serial/ark_conserved_exp_entropy_erk_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_damped_harmonic_symplectic.c
+/usr/share/sundials/examples/arkode/C_serial/ark_damped_harmonic_symplectic.h
+/usr/share/sundials/examples/arkode/C_serial/ark_damped_harmonic_symplectic.out
+/usr/share/sundials/examples/arkode/C_serial/ark_dissipated_exp_entropy.c
+/usr/share/sundials/examples/arkode/C_serial/ark_dissipated_exp_entropy_1_0.out
+/usr/share/sundials/examples/arkode/C_serial/ark_dissipated_exp_entropy_1_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_harmonic_symplectic.c
+/usr/share/sundials/examples/arkode/C_serial/ark_harmonic_symplectic.h
+/usr/share/sundials/examples/arkode/C_serial/ark_harmonic_symplectic.out
 /usr/share/sundials/examples/arkode/C_serial/ark_heat1D.c
 /usr/share/sundials/examples/arkode/C_serial/ark_heat1D.out
 /usr/share/sundials/examples/arkode/C_serial/ark_heat1D_adapt.c
 /usr/share/sundials/examples/arkode/C_serial/ark_heat1D_adapt.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler.c
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler.h
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_ERK_--step-mode_adapt.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_ERK_--step-mode_fixed_--count-orbits.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--count-orbits_--use-compensated-sums.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_EULER_1_1_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_LEAPFROG_2_2_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_MCLACHLAN_2_2_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_MCLACHLAN_3_3_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_MCLACHLAN_4_4_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_MCLACHLAN_5_6_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_PSEUDO_LEAPFROG_2_2_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_RUTH_3_3_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_--stepper_SPRK_--step-mode_fixed_--method_ARKODE_SPRK_YOSHIDA_6_8_--tf_50_--check-order_--nout_1.out
+/usr/share/sundials/examples/arkode/C_serial/ark_kepler_plot.py
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri.c
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri.out
 /usr/share/sundials/examples/arkode/C_serial/ark_kpr_mri_0_0.002.out
@@ -660,6 +693,8 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/include/arkode/arkode_erkstep.h
 /usr/include/arkode/arkode_ls.h
 /usr/include/arkode/arkode_mristep.h
+/usr/include/arkode/arkode_sprk.h
+/usr/include/arkode/arkode_sprkstep.h
 /usr/include/cvode/cvode.h
 /usr/include/cvode/cvode_bandpre.h
 /usr/include/cvode/cvode_bbdpre.h
@@ -765,89 +800,89 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsundials_arkode.so.5.5.1
-/V3/usr/lib64/libsundials_cvode.so.6.5.1
-/V3/usr/lib64/libsundials_cvodes.so.6.5.1
-/V3/usr/lib64/libsundials_generic.so.6.5.1
-/V3/usr/lib64/libsundials_ida.so.6.5.1
-/V3/usr/lib64/libsundials_idas.so.5.5.1
-/V3/usr/lib64/libsundials_kinsol.so.6.5.1
-/V3/usr/lib64/libsundials_nvecmanyvector.so.6.5.1
-/V3/usr/lib64/libsundials_nvecopenmp.so.6.5.1
-/V3/usr/lib64/libsundials_nvecpthreads.so.6.5.1
-/V3/usr/lib64/libsundials_nvecserial.so.6.5.1
-/V3/usr/lib64/libsundials_sunlinsolband.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsoldense.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsolpcg.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsolspbcgs.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsolspfgmr.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsolspgmr.so.4.5.1
-/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.5.1
-/V3/usr/lib64/libsundials_sunmatrixband.so.4.5.1
-/V3/usr/lib64/libsundials_sunmatrixdense.so.4.5.1
-/V3/usr/lib64/libsundials_sunmatrixsparse.so.4.5.1
-/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.5.1
-/V3/usr/lib64/libsundials_sunnonlinsolnewton.so.3.5.1
-/V4/usr/lib64/libsundials_arkode.so.5.5.1
-/V4/usr/lib64/libsundials_cvode.so.6.5.1
-/V4/usr/lib64/libsundials_cvodes.so.6.5.1
-/V4/usr/lib64/libsundials_generic.so.6.5.1
-/V4/usr/lib64/libsundials_ida.so.6.5.1
-/V4/usr/lib64/libsundials_idas.so.5.5.1
-/V4/usr/lib64/libsundials_kinsol.so.6.5.1
-/V4/usr/lib64/libsundials_nvecmanyvector.so.6.5.1
-/V4/usr/lib64/libsundials_nvecopenmp.so.6.5.1
-/V4/usr/lib64/libsundials_nvecpthreads.so.6.5.1
-/V4/usr/lib64/libsundials_nvecserial.so.6.5.1
-/V4/usr/lib64/libsundials_sunlinsolband.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsoldense.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsolpcg.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsolspbcgs.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsolspfgmr.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsolspgmr.so.4.5.1
-/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.5.1
-/V4/usr/lib64/libsundials_sunmatrixband.so.4.5.1
-/V4/usr/lib64/libsundials_sunmatrixdense.so.4.5.1
-/V4/usr/lib64/libsundials_sunmatrixsparse.so.4.5.1
-/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.5.1
-/V4/usr/lib64/libsundials_sunnonlinsolnewton.so.3.5.1
+/V3/usr/lib64/libsundials_arkode.so.5.6.0
+/V3/usr/lib64/libsundials_cvode.so.6.6.0
+/V3/usr/lib64/libsundials_cvodes.so.6.6.0
+/V3/usr/lib64/libsundials_generic.so.6.6.0
+/V3/usr/lib64/libsundials_ida.so.6.6.0
+/V3/usr/lib64/libsundials_idas.so.5.6.0
+/V3/usr/lib64/libsundials_kinsol.so.6.6.0
+/V3/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
+/V3/usr/lib64/libsundials_nvecopenmp.so.6.6.0
+/V3/usr/lib64/libsundials_nvecpthreads.so.6.6.0
+/V3/usr/lib64/libsundials_nvecserial.so.6.6.0
+/V3/usr/lib64/libsundials_sunlinsolband.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
+/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
+/V3/usr/lib64/libsundials_sunmatrixband.so.4.6.0
+/V3/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
+/V3/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
+/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
+/V3/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
+/V4/usr/lib64/libsundials_arkode.so.5.6.0
+/V4/usr/lib64/libsundials_cvode.so.6.6.0
+/V4/usr/lib64/libsundials_cvodes.so.6.6.0
+/V4/usr/lib64/libsundials_generic.so.6.6.0
+/V4/usr/lib64/libsundials_ida.so.6.6.0
+/V4/usr/lib64/libsundials_idas.so.5.6.0
+/V4/usr/lib64/libsundials_kinsol.so.6.6.0
+/V4/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
+/V4/usr/lib64/libsundials_nvecopenmp.so.6.6.0
+/V4/usr/lib64/libsundials_nvecpthreads.so.6.6.0
+/V4/usr/lib64/libsundials_nvecserial.so.6.6.0
+/V4/usr/lib64/libsundials_sunlinsolband.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
+/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
+/V4/usr/lib64/libsundials_sunmatrixband.so.4.6.0
+/V4/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
+/V4/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
+/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
+/V4/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
 /usr/lib64/libsundials_arkode.so.5
-/usr/lib64/libsundials_arkode.so.5.5.1
+/usr/lib64/libsundials_arkode.so.5.6.0
 /usr/lib64/libsundials_cvode.so.6
-/usr/lib64/libsundials_cvode.so.6.5.1
+/usr/lib64/libsundials_cvode.so.6.6.0
 /usr/lib64/libsundials_cvodes.so.6
-/usr/lib64/libsundials_cvodes.so.6.5.1
+/usr/lib64/libsundials_cvodes.so.6.6.0
 /usr/lib64/libsundials_generic.so.6
-/usr/lib64/libsundials_generic.so.6.5.1
+/usr/lib64/libsundials_generic.so.6.6.0
 /usr/lib64/libsundials_ida.so.6
-/usr/lib64/libsundials_ida.so.6.5.1
+/usr/lib64/libsundials_ida.so.6.6.0
 /usr/lib64/libsundials_idas.so.5
-/usr/lib64/libsundials_idas.so.5.5.1
+/usr/lib64/libsundials_idas.so.5.6.0
 /usr/lib64/libsundials_kinsol.so.6
-/usr/lib64/libsundials_kinsol.so.6.5.1
+/usr/lib64/libsundials_kinsol.so.6.6.0
 /usr/lib64/libsundials_nvecmanyvector.so.6
-/usr/lib64/libsundials_nvecmanyvector.so.6.5.1
+/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
 /usr/lib64/libsundials_nvecopenmp.so.6
-/usr/lib64/libsundials_nvecopenmp.so.6.5.1
+/usr/lib64/libsundials_nvecopenmp.so.6.6.0
 /usr/lib64/libsundials_nvecpthreads.so.6
-/usr/lib64/libsundials_nvecpthreads.so.6.5.1
+/usr/lib64/libsundials_nvecpthreads.so.6.6.0
 /usr/lib64/libsundials_nvecserial.so.6
-/usr/lib64/libsundials_nvecserial.so.6.5.1
-/usr/lib64/libsundials_sunlinsolband.so.4.5.1
-/usr/lib64/libsundials_sunlinsoldense.so.4.5.1
-/usr/lib64/libsundials_sunlinsolpcg.so.4.5.1
-/usr/lib64/libsundials_sunlinsolspbcgs.so.4.5.1
-/usr/lib64/libsundials_sunlinsolspfgmr.so.4.5.1
-/usr/lib64/libsundials_sunlinsolspgmr.so.4.5.1
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.5.1
+/usr/lib64/libsundials_nvecserial.so.6.6.0
+/usr/lib64/libsundials_sunlinsolband.so.4.6.0
+/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
+/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
+/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
+/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
+/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
 /usr/lib64/libsundials_sunmatrixband.so.4
-/usr/lib64/libsundials_sunmatrixband.so.4.5.1
+/usr/lib64/libsundials_sunmatrixband.so.4.6.0
 /usr/lib64/libsundials_sunmatrixdense.so.4
-/usr/lib64/libsundials_sunmatrixdense.so.4.5.1
+/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
 /usr/lib64/libsundials_sunmatrixsparse.so.4
-/usr/lib64/libsundials_sunmatrixsparse.so.4.5.1
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.5.1
-/usr/lib64/libsundials_sunnonlinsolnewton.so.3.5.1
+/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
+/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
 
 %files license
 %defattr(0644,root,root,0755)
