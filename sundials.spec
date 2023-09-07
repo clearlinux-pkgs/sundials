@@ -5,10 +5,10 @@
 #
 %define keepstatic 1
 Name     : sundials
-Version  : 6.6.0
-Release  : 60
-URL      : https://github.com/LLNL/sundials/archive/v6.6.0/sundials-6.6.0.tar.gz
-Source0  : https://github.com/LLNL/sundials/archive/v6.6.0/sundials-6.6.0.tar.gz
+Version  : 6.6.1
+Release  : 61
+URL      : https://github.com/LLNL/sundials/archive/v6.6.1/sundials-6.6.1.tar.gz
+Source0  : https://github.com/LLNL/sundials/archive/v6.6.1/sundials-6.6.1.tar.gz
 Summary  : Suite of Nonlinear and Differential/ALgebraic equation Solvers
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -83,15 +83,15 @@ staticdev components for the sundials package.
 
 
 %prep
-%setup -q -n sundials-6.6.0
-cd %{_builddir}/sundials-6.6.0
+%setup -q -n sundials-6.6.1
+cd %{_builddir}/sundials-6.6.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689955300
+export SOURCE_DATE_EPOCH=1694104256
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -205,7 +205,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1689955300
+export SOURCE_DATE_EPOCH=1694104256
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sundials
 cp %{_builddir}/sundials-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/sundials/11adbd373d31e3f2ef81c49d25cefd8f9d2313b2 || :
@@ -749,6 +749,7 @@ rm -f %{buildroot}*/usr/LICENSE
 /usr/include/sundials/sundials_matrix.h
 /usr/include/sundials/sundials_matrix.hpp
 /usr/include/sundials/sundials_memory.h
+/usr/include/sundials/sundials_memory.hpp
 /usr/include/sundials/sundials_mpi_types.h
 /usr/include/sundials/sundials_nonlinearsolver.h
 /usr/include/sundials/sundials_nonlinearsolver.hpp
@@ -800,89 +801,89 @@ rm -f %{buildroot}*/usr/LICENSE
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsundials_arkode.so.5.6.0
-/V3/usr/lib64/libsundials_cvode.so.6.6.0
-/V3/usr/lib64/libsundials_cvodes.so.6.6.0
-/V3/usr/lib64/libsundials_generic.so.6.6.0
-/V3/usr/lib64/libsundials_ida.so.6.6.0
-/V3/usr/lib64/libsundials_idas.so.5.6.0
-/V3/usr/lib64/libsundials_kinsol.so.6.6.0
-/V3/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
-/V3/usr/lib64/libsundials_nvecopenmp.so.6.6.0
-/V3/usr/lib64/libsundials_nvecpthreads.so.6.6.0
-/V3/usr/lib64/libsundials_nvecserial.so.6.6.0
-/V3/usr/lib64/libsundials_sunlinsolband.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
-/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
-/V3/usr/lib64/libsundials_sunmatrixband.so.4.6.0
-/V3/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
-/V3/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
-/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
-/V3/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
-/V4/usr/lib64/libsundials_arkode.so.5.6.0
-/V4/usr/lib64/libsundials_cvode.so.6.6.0
-/V4/usr/lib64/libsundials_cvodes.so.6.6.0
-/V4/usr/lib64/libsundials_generic.so.6.6.0
-/V4/usr/lib64/libsundials_ida.so.6.6.0
-/V4/usr/lib64/libsundials_idas.so.5.6.0
-/V4/usr/lib64/libsundials_kinsol.so.6.6.0
-/V4/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
-/V4/usr/lib64/libsundials_nvecopenmp.so.6.6.0
-/V4/usr/lib64/libsundials_nvecpthreads.so.6.6.0
-/V4/usr/lib64/libsundials_nvecserial.so.6.6.0
-/V4/usr/lib64/libsundials_sunlinsolband.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
-/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
-/V4/usr/lib64/libsundials_sunmatrixband.so.4.6.0
-/V4/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
-/V4/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
-/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
-/V4/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
+/V3/usr/lib64/libsundials_arkode.so.5.6.1
+/V3/usr/lib64/libsundials_cvode.so.6.6.1
+/V3/usr/lib64/libsundials_cvodes.so.6.6.1
+/V3/usr/lib64/libsundials_generic.so.6.6.1
+/V3/usr/lib64/libsundials_ida.so.6.6.1
+/V3/usr/lib64/libsundials_idas.so.5.6.1
+/V3/usr/lib64/libsundials_kinsol.so.6.6.1
+/V3/usr/lib64/libsundials_nvecmanyvector.so.6.6.1
+/V3/usr/lib64/libsundials_nvecopenmp.so.6.6.1
+/V3/usr/lib64/libsundials_nvecpthreads.so.6.6.1
+/V3/usr/lib64/libsundials_nvecserial.so.6.6.1
+/V3/usr/lib64/libsundials_sunlinsolband.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsoldense.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsolpcg.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.1
+/V3/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.1
+/V3/usr/lib64/libsundials_sunmatrixband.so.4.6.1
+/V3/usr/lib64/libsundials_sunmatrixdense.so.4.6.1
+/V3/usr/lib64/libsundials_sunmatrixsparse.so.4.6.1
+/V3/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.1
+/V3/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.1
+/V4/usr/lib64/libsundials_arkode.so.5.6.1
+/V4/usr/lib64/libsundials_cvode.so.6.6.1
+/V4/usr/lib64/libsundials_cvodes.so.6.6.1
+/V4/usr/lib64/libsundials_generic.so.6.6.1
+/V4/usr/lib64/libsundials_ida.so.6.6.1
+/V4/usr/lib64/libsundials_idas.so.5.6.1
+/V4/usr/lib64/libsundials_kinsol.so.6.6.1
+/V4/usr/lib64/libsundials_nvecmanyvector.so.6.6.1
+/V4/usr/lib64/libsundials_nvecopenmp.so.6.6.1
+/V4/usr/lib64/libsundials_nvecpthreads.so.6.6.1
+/V4/usr/lib64/libsundials_nvecserial.so.6.6.1
+/V4/usr/lib64/libsundials_sunlinsolband.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsoldense.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsolpcg.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.1
+/V4/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.1
+/V4/usr/lib64/libsundials_sunmatrixband.so.4.6.1
+/V4/usr/lib64/libsundials_sunmatrixdense.so.4.6.1
+/V4/usr/lib64/libsundials_sunmatrixsparse.so.4.6.1
+/V4/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.1
+/V4/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.1
 /usr/lib64/libsundials_arkode.so.5
-/usr/lib64/libsundials_arkode.so.5.6.0
+/usr/lib64/libsundials_arkode.so.5.6.1
 /usr/lib64/libsundials_cvode.so.6
-/usr/lib64/libsundials_cvode.so.6.6.0
+/usr/lib64/libsundials_cvode.so.6.6.1
 /usr/lib64/libsundials_cvodes.so.6
-/usr/lib64/libsundials_cvodes.so.6.6.0
+/usr/lib64/libsundials_cvodes.so.6.6.1
 /usr/lib64/libsundials_generic.so.6
-/usr/lib64/libsundials_generic.so.6.6.0
+/usr/lib64/libsundials_generic.so.6.6.1
 /usr/lib64/libsundials_ida.so.6
-/usr/lib64/libsundials_ida.so.6.6.0
+/usr/lib64/libsundials_ida.so.6.6.1
 /usr/lib64/libsundials_idas.so.5
-/usr/lib64/libsundials_idas.so.5.6.0
+/usr/lib64/libsundials_idas.so.5.6.1
 /usr/lib64/libsundials_kinsol.so.6
-/usr/lib64/libsundials_kinsol.so.6.6.0
+/usr/lib64/libsundials_kinsol.so.6.6.1
 /usr/lib64/libsundials_nvecmanyvector.so.6
-/usr/lib64/libsundials_nvecmanyvector.so.6.6.0
+/usr/lib64/libsundials_nvecmanyvector.so.6.6.1
 /usr/lib64/libsundials_nvecopenmp.so.6
-/usr/lib64/libsundials_nvecopenmp.so.6.6.0
+/usr/lib64/libsundials_nvecopenmp.so.6.6.1
 /usr/lib64/libsundials_nvecpthreads.so.6
-/usr/lib64/libsundials_nvecpthreads.so.6.6.0
+/usr/lib64/libsundials_nvecpthreads.so.6.6.1
 /usr/lib64/libsundials_nvecserial.so.6
-/usr/lib64/libsundials_nvecserial.so.6.6.0
-/usr/lib64/libsundials_sunlinsolband.so.4.6.0
-/usr/lib64/libsundials_sunlinsoldense.so.4.6.0
-/usr/lib64/libsundials_sunlinsolpcg.so.4.6.0
-/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.0
-/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.0
-/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.0
-/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.0
+/usr/lib64/libsundials_nvecserial.so.6.6.1
+/usr/lib64/libsundials_sunlinsolband.so.4.6.1
+/usr/lib64/libsundials_sunlinsoldense.so.4.6.1
+/usr/lib64/libsundials_sunlinsolpcg.so.4.6.1
+/usr/lib64/libsundials_sunlinsolspbcgs.so.4.6.1
+/usr/lib64/libsundials_sunlinsolspfgmr.so.4.6.1
+/usr/lib64/libsundials_sunlinsolspgmr.so.4.6.1
+/usr/lib64/libsundials_sunlinsolsptfqmr.so.4.6.1
 /usr/lib64/libsundials_sunmatrixband.so.4
-/usr/lib64/libsundials_sunmatrixband.so.4.6.0
+/usr/lib64/libsundials_sunmatrixband.so.4.6.1
 /usr/lib64/libsundials_sunmatrixdense.so.4
-/usr/lib64/libsundials_sunmatrixdense.so.4.6.0
+/usr/lib64/libsundials_sunmatrixdense.so.4.6.1
 /usr/lib64/libsundials_sunmatrixsparse.so.4
-/usr/lib64/libsundials_sunmatrixsparse.so.4.6.0
-/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.0
-/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.0
+/usr/lib64/libsundials_sunmatrixsparse.so.4.6.1
+/usr/lib64/libsundials_sunnonlinsolfixedpoint.so.3.6.1
+/usr/lib64/libsundials_sunnonlinsolnewton.so.3.6.1
 
 %files license
 %defattr(0644,root,root,0755)
